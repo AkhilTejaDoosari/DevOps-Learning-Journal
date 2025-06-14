@@ -1,0 +1,9 @@
+# Ignore macOS system files
+.DS_Store
+
+# Optional: Office temp files
+~$*
+
+# Optional: Other unnecessary files
+*.log
+
