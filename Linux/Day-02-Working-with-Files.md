@@ -1,9 +1,9 @@
-# Day-02: Working with Files & File Content
+# Day-03: Working with Files & File Content
 
 ## Table of Contents
 
 - [Working with Files](#working-with-files)
-  - [1. Create & Inspect Files](#1-create--inspect-files)
+  - [1. Create & Inspect Files](#1-create--inspec-files)
   - [2. Copying Files](#2-copying-files)
   - [3. Moving / Renaming Files](#3-moving---renaming-files)
   - [4. Deleting Files](#4-deleting-files)
@@ -16,7 +16,7 @@
 - [Quick Command Summary](#quick-command-summary)
 - [Interview Tips](#interview-tips)
 
-## 🗂️ Working with Files {#working-with-files}
+## Working with Files {#working-with-files}
 
 ### 1. Create & Inspect Files {#1-create--inspect-files}
 
@@ -37,7 +37,7 @@
 | `cp -v` | Verbose output (shows copying process)   | `cp -v <src> <dest>`        | `cp -v first.txt test.txt` |
 | `cp -r` | Copies entire directories recursively    | `cp -r dir1/ dir2/`         | `cp -irv src/ backup/`     |
 
-> 💡 **Tip**: The source is never modified; only the destination is created or overwritten.
+>  **Tip**: The source is never modified; only the destination is created or overwritten.
 
 ---
 
@@ -78,7 +78,7 @@
 
 ---
 
-## 📑 Working with File Content {#working-with-file-content}
+## Working with File Content {#working-with-file-content}
 
 ### 1. Viewing File Contents {#1-viewing-file-contents}
 
@@ -112,7 +112,7 @@
 
 ---
 
-## 🧠 Filesystem Types in Linux {#filesystem-types-in-linux}
+## Filesystem Types in Linux {#filesystem-types-in-linux}
 
 Everything is treated as a file.
 
@@ -130,7 +130,7 @@ ls -l
 
 ---
 
-## 🛠️ Quick Command Summary {#quick-command-summary}
+## Quick Command Summary {#quick-command-summary}
 
 ```bash
 touch myfile.txt                  # Create file  
@@ -147,7 +147,7 @@ stat file.txt                     # File details
 
 ---
 
-## ✅ Interview Tips {#interview-tips}
+## Interview Tips {#interview-tips}
 
 - “Use `cp -i` to avoid accidental overwrites.”
 - “Absolute paths are always reliable in scripts.”
