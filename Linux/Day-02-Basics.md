@@ -1,50 +1,48 @@
 
 # 🐧 Linux Basics – Day 02 (80/20 Rule)
 
-> Master 20% of Linux commands that give 80% of the results in daily DevOps practice.
-
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 
-- [📂 Directory Navigation](#-directory-navigation)
-- [📁 Listing Directory Contents](#-listing-directory-contents)
-- [🖥️ Terminal Essentials](#️-terminal-essentials)
-- [🧠 System Information](#-system-information)
-- [🧰 Getting Help](#-getting-help)
-- [🔍 System Info via `uname`](#-system-info-via-uname)
-- [✅ Quick Tips](#-quick-tips)
+- [Directory Navigation](#-directory-navigation)
+- [Listing Directory Contents](#-listing-directory-contents)
+- [Terminal Essentials](#️-terminal-essentials)
+- [System Information](#-system-information)
+- [Getting Help](#-getting-help)
+- [System Info via `uname`](#-system-info-via-uname)
 
 ---
 
 <details>
-<summary><strong>📂 Directory Navigation</strong></summary>
+<summary><strong> Directory Navigation</strong></summary>
 
 | Command | Purpose | Example |
 |--------|---------|---------|
-| `pwd` | Show current directory path | `pwd` |
-| `cd <dir>` | Change directory | `cd telusko` |
+| `mkdir <dir>` | Create a new folder | `mkdir devops` |
+| `pwd` | Show current directory path (present working directory) | `pwd` |
+| `cd <dir>` | Change directory | `cd linux` |
 | `cd ..` | Go back one directory | `cd ..` |
-| `mkdir <dir>` | Create a new folder | `mkdir telusko` |
-| `mkdir -p a/b/c` | Create nested folders | `mkdir -p dev/linux/scripts` |
-| `rmdir <dir>` | Remove empty directory | `rmdir tempdir` |
-| `rm -rf <dir>` | Delete non-empty directory (be careful) | `rm -rf old_projects` |
+| `mkdir -p a/b/c` | Create nested folders | `mkdir -p DevOps/linux/playground` |
+| `rmdir <dir>` | Remove empty directory | `rmdir devops` |
+| `rm -rf <dir>` | Delete non-empty directory (be careful) | `rm -rf DevOps` |
 
 </details>
 
 ---
 
 <details>
-<summary><strong>📁 Listing Directory Contents</strong></summary>
+<summary><strong> Listing Directory Contents</strong></summary>
 
 | Command | Purpose | Example |
 |--------|---------|---------|
 | `ls` | List contents of current dir | `ls` |
-| `ls -l` | Long list with details | `ls -l` |
+| `ls -l` | Long list with details (alphabetical order (a-z)) | `ls -l` |
+| `ls -lr` | Long list with details (reverse alphabetical order (z-a)) | `ls -l` |
+| `ls -lt` | Sorted by time, newest first | `ls -lt` |
+| `ls -ltr` | Sorted by time, oldest first | `ls -ltr` |
 | `ls -a` | Show hidden files too | `ls -a` |
 | `ls -lh` | Human-readable sizes | `ls -lh` |
-| `ls -ltr` | Sorted by time, oldest first | `ls -ltr` |
-| `ls -lt` | Sorted by time, newest first | `ls -lt` |
 | `ls -ld <dir>` | List directory metadata only | `ls -ld devops/` |
 
 </details>
@@ -52,7 +50,7 @@
 ---
 
 <details>
-<summary><strong>🖥️ Terminal Essentials</strong></summary>
+<summary><strong> Terminal Essentials</strong></summary>
 
 | Command | Purpose | Example |
 |--------|---------|---------|
@@ -66,7 +64,7 @@
 ---
 
 <details>
-<summary><strong>🧠 System Information</strong></summary>
+<summary><strong> System Information</strong></summary>
 
 | Command | Purpose | Example |
 |--------|---------|---------|
@@ -80,7 +78,7 @@
 ---
 
 <details>
-<summary><strong>🧰 Getting Help</strong></summary>
+<summary><strong> Getting Help</strong></summary>
 
 | Command | Purpose | Example |
 |--------|---------|---------|
@@ -94,7 +92,7 @@
 ---
 
 <details>
-<summary><strong>🔍 System Info via uname</strong></summary>
+<summary><strong> System Info via uname</strong></summary>
 
 | Option | What it shows | Command |
 |--------|----------------|---------|
@@ -107,14 +105,3 @@
 </details>
 
 ---
-
-## ✅ Quick Tips
-
-- Use `Tab` key to **auto-complete** commands and paths.
-- Use `Up ↑` and `Down ↓` arrows to **recall past commands**.
-- Combine options like `ls -lah` to see hidden files in human-readable format.
-- Don’t panic! Use `man <command>` to check any command's usage.
-
----
-
-📝 *Next up: File operations, redirection, and text processing tools (`cat`, `touch`, `cp`, `mv`, `rm`, etc.).*
