@@ -1,5 +1,4 @@
-
-# 🐧 Linux Basics – Day 02 (80/20 Rule)
+# 🐧 Day 02 - Basics
 
 ---
 
