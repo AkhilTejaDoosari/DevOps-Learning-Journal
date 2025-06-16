@@ -11,7 +11,6 @@
 - [8. Page-by-Page Navigation](#8-page-by-page-navigation)  
 - [9. Filesystem Types in Linux](#9-filesystem-types-in-linux)  
 - [10. Quick Command Summary](#10-quick-command-summary)  
-- [11. Interview Tips](#11-interview-tips)  
 
 ---
 
