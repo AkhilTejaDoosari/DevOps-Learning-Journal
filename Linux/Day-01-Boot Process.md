@@ -136,5 +136,5 @@ Once you log in, Linux is ready to go!
 ```bash
 uname -r                              # Shows kernel version  
 dmesg | less                          # View boot-time system messages  
-systemctl list-units --type=service  # Show running services  
+systemctl list-units --type=service   # Show running services  
 ls /boot                              # Lists kernel and GRUB files  
