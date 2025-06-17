@@ -29,7 +29,7 @@ These are built-in programs on your motherboard.
 - Checks hardware like RAM, disk, keyboard, etc.  
 - Finds a bootable device (hard drive, USB, etc.)
 
-Interview Tip: “BIOS/UEFI initializes hardware and identifies a bootable device.”
+Tip: “BIOS/UEFI initializes hardware and identifies a bootable device.”
 
 ---
 
@@ -64,7 +64,7 @@ GRUB is like a train conductor — it gets the right Linux engine ready to go.
 - `/etc/default/grub`  
 - `/etc/grub.d/`
 
-Interview Tip: “GRUB loads the Linux kernel and initial RAM disk into memory.”
+Tip: “GRUB loads the Linux kernel and initial RAM disk into memory.”
 
 ---
 
@@ -82,7 +82,7 @@ The core of Linux — it controls CPU, memory, devices, etc.
 
 The kernel is like the factory manager making sure everything runs.
 
-Interview Tip: “initramfs provides essential drivers to help the kernel mount the actual root partition.”
+Tip: “initramfs provides essential drivers to help the kernel mount the actual root partition.”
 
 ---
 
@@ -98,7 +98,7 @@ The first real process started by the kernel. It’s PID 1.
 - Decides boot mode (CLI or GUI)  
 - Manages the order and status of services
 
-Interview Tip: “systemd is the first user-space process. It manages services and controls boot targets.”
+Tip: “systemd is the first user-space process. It manages services and controls boot targets.”
 
 ---
 

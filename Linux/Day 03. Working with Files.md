@@ -2,8 +2,7 @@
 
 ## Table of Contents
 - [1. Create & Inspect Files](#1-create--inspect-files)  
-- [2. Copying Files](#2-copying-files)  
-- [3. Moving / Renaming Files](#3-moving--renaming-files)  
+- [2. Copying / Moving / Renaming Files](#2-copying--moving--renaming-filesfiles)  
 - [4. Deleting Files](#4-deleting-files)  
 - [5. Absolute vs Relative Paths](#5-absolute-vs-relative-paths)  
 - [6. Viewing File Contents](#6-viewing-file-contents)  
@@ -11,148 +10,140 @@
 - [8. Page-by-Page Navigation](#8-page-by-page-navigation)  
 - [9. Filesystem Types in Linux](#9-filesystem-types-in-linux)  
 - [10. Quick Command Summary](#10-quick-command-summary)  
+- [7. Previewing File Sections](#7-previewing-file-sections)   
+- [8. Filesystem Types in Linux](#9-filesystem-types-in-linux)  
+- [9. Quick Command Summary](#10-quick-command-summary)  
+- [10. Tips](#11-tips)  
 
 ---
 
 <details>
 <summary><strong>1. Create & Inspect Files</strong></summary>
 
-| Command | Description                                   | Syntax             | Example           |
-| ------- | --------------------------------------------- | ------------------ | ----------------- |
-| `touch` | Creates an empty file or updates timestamp    | `touch &lt;filename&gt;` | `touch first.txt` |
-| `file`  | Identifies the type of a file                 | `file &lt;filename&gt;`  | `file first.txt`  |
-| `stat`  | Displays file metadata like size, access time | `stat &lt;filename&gt;`  | `stat first.txt`  |
+| Command | Description                                | Syntax               | Example           |
+| ------- | ------------------------------------------ | -------------------- | ----------------- |
+| `touch` | Create an empty file or update timestamp   | `touch <filename>`   | `touch file1.txt` |
+| `file`  | Identify the type of a file                | `file <filename>`    | `file file1.txt`  |
+| `stat`  | Display file metadata (size, timestamps)   | `stat <filename>`    | `stat file1.txt`  |
 
 </details>
 
 ---
 
 <details>
-<summary><strong>2. Copying Files</strong></summary>
+<summary><strong>2. Copying / Moving / Renaming Files</strong></summary>
 
-| Command | Description                              | Syntax                      | Example                    |
-| ------- | ---------------------------------------- | --------------------------- | -------------------------- |
-| `cp`    | Copies files or directories              | `cp &lt;source&gt; &lt;destination&gt;` | `cp first.txt copy.txt`    |
-| `cp -i` | Interactive mode (asks before overwrite) | `cp -i &lt;src&gt; &lt;dest&gt;`        | `cp -i first.txt test.txt` |
-| `cp -v` | Verbose output (shows copying process)   | `cp -v &lt;src&gt; &lt;dest&gt;`        | `cp -v first.txt test.txt` |
-| `cp -r` | Copies entire directories recursively    | `cp -r dir1/ dir2/`         | `cp -irv src/ backup/`     |
+| Command  | Description                               | Syntax                          | Example                          |
+| -------- | ----------------------------------------- | ------------------------------- | -------------------------------- |
+| `cp`     | Copy files or directories                 | `cp <source> <destination>`     | `cp file1.txt file2.txt`         |
+| `cp -i`  | Prompt before overwrite                   | `cp -i <src> <dest>`            | `cp -i file1.txt file2.txt`      |
+| `cp -v`  | Show verbose output                       | `cp -v <src> <dest>`            | `cp -v ffile1.txt file2.txt`     |
+| `cp -r`  | Copy directories recursively              | `cp -r <src_dir> <dest_dir>`    | `cp -r src/ backup/`             |
+| `mv`    | Move or rename files or directories  | `mv <source> <dest>`   | `mv file2.txt file3.txt`     |
+</details>
 
-> 💡 **Tip**: Use `cp -i` to avoid accidental overwrites; `-v` for visibility; `-r` for directories.
+---
+
+<details>
+<summary><strong>3. Deleting Files</strong></summary>
+
+| Command | Description                           | Syntax                 | Example                     |
+| ------- | ------------------------------------- | ---------------------- | --------------------------- |
+| `rm`    | Remove a file                         | `rm <filename>`        | `rm file3.txt`              |
+| `rm -i` | Prompt before deletion                | `rm -i <filename>`     | `rm -i file3.txt`           |
+| `rm -r` | Remove directories with existing files| `rm -r <directory>`    | `rm -r devops/`             |
+| `rm -f` | Force delete without prompt           | `rm -f <filename>`     | `rm -f file3.txt`           |
 
 </details>
 
 ---
 
 <details>
-<summary><strong>3. Moving / Renaming Files</strong></summary>
+<summary><strong>4. Absolute vs Relative Paths</strong></summary>
 
-| Command | Description                        | Syntax            | Example                 |
-| ------- | ---------------------------------- | ----------------- | ----------------------- |
-| `mv`    | Moves or renames files/directories | `mv &lt;src&gt; &lt;dest&gt;` | `mv test.txt final.txt` |
+| Type             | Description                      | Example                            | Use Case                       |
+| ---------------- | -------------------------------- | ---------------------------------- | ------------------------------ |
+| Absolute Path    | Starts from root (`/`)           | `/home/devops/linux/file3.txt`      | Scripts, clarity              |
+| Relative Path    | From current directory           | `../docs/info.md`                  | Quick navigation               |
 
-> If `<dest>` is a directory, it moves inside; if a filename, it renames.
-
-</details>
-
----
-
-<details>
-<summary><strong>4. Deleting Files</strong></summary>
-
-| Command | Description                    | Syntax             | Example           |
-| ------- | ------------------------------ | ------------------ | ----------------- |
-| `rm`    | Removes a file                 | `rm &lt;filename&gt;`    | `rm final.txt`    |
-| `rm -i` | Prompts before deletion        | `rm -i &lt;filename&gt;` | `rm -i file1.txt` |
-| `rm -r` | Recursively delete a directory | `rm -r folder/`    | `rm -r old_data/` |
-| `rm -f` | Force delete without prompts   | `rm -f &lt;filename&gt;` | `rm -f risky.txt` |
+. = current directory, .. = parent directory
 
 </details>
 
 ---
 
 <details>
-<summary><strong>5. Absolute vs Relative Paths</strong></summary>
+<summary><strong>5. Viewing File Contents</strong></summary>
 
-| Type              | Description                    | Example                       | Use Case                     |
-| ----------------- | ------------------------------ | ----------------------------- | ---------------------------- |
-| **Absolute Path** | Starts from root `/`           | `/home/akhil/devops/file.txt` | Scripts and clarity          |
-| **Relative Path** | From current directory         | `../docs/info.md`             | Quick terminal navigation    |
-
-**Helpers:** `.` = current dir, `..` = parent dir
-
-</details>
-
----
-
-<details>
-<summary><strong>6. Viewing File Contents</strong></summary>
-
-| Command  | Description                               | Syntax            | Example        |
-| -------- | ----------------------------------------- | ----------------- | -------------- |
-| `cat`    | Print file content                        | `cat &lt;file&gt;`      | `cat demo.txt` |
-| `cat -n` | Number lines                             | `cat -n &lt;file&gt;`   |                |
-| `tac`    | Reverse print (last first)               | `tac &lt;file&gt;`      | `tac demo.txt` |
-| `nl`     | Number lines (alternate)                 | `nl &lt;file&gt;`       | `nl script.sh` |
+| Command   | Description                         | Syntax             | Example           |
+| --------- | ----------------------------------- | ------------------ | ----------------- |
+| `cat`     | Print file content                  | `cat <file>`       | `cat file1.txt`   |
+| `cat -n`  | Print content with line numbers     | `cat -n <file>`    | `cat -n file1.txt`|
+| `tac`     | Print file content in reverse order | `tac <file>`       | `tac file1.txt`   |
+| `nl`      | Number lines                        | `nl <file>`        | `nl file1.txt`    |
 
 </details>
 
 ---
 
 <details>
-<summary><strong>7. Previewing File Sections</strong></summary>
+<summary><strong>6. Previewing File Sections</strong></summary>
 
-| Command     | Description           | Syntax                    | Example            |
-| ----------- | --------------------- | ------------------------- | ------------------ |
-| `head`      | Show first 10 lines   | `head &lt;file&gt;`             | `head notes.txt`   |
-| `head -n N` | Show first N lines    | `head -n 5 &lt;file&gt;`        |                    |
-| `tail`      | Show last 10 lines    | `tail &lt;file&gt;`             | `tail logfile.txt` |
-| `tail -n N` | Show last N lines     | `tail -n 7 &lt;file&gt;`        |                    |
-| `tail -f`   | Follow file updates   | `tail -f &lt;file&gt;`          | `tail -f /var/log/syslog` |
+| Command     | Description                              | Syntax               | Example                      |
+| ----------- | ---------------------------------------- | -------------------- | ---------------------------- |
+| `head`      | Show first 10 lines                      | `head <file>`        | `head file2.txt`             |
+| `head -n`   | Show first N lines                       | `head -n 5 <file>`   | `head -n 5 file2.txt`        |
+| `tail`      | Show last 10 lines                       | `tail <file>`        | `tail file2.txt`             |
+| `tail -n`   | Show last N lines                        | `tail -n 7 <file>`   | `tail -n 7 file2.txt`        |
+| `more`      | Paginate forward only                    | `more <file>`        | `more long.txt`              |
+| `less`      | Paginate with navigation (forward/back)  | `less <file>`        | `less journal.txt`           |
+</details>
+
+---
+
+<details>
+<summary><strong>7. Filesystem Types in Linux</strong></summary>
+
+| Type      | Description          | Indicator |
+| --------- | -------------------- | --------- |
+| Directory | A folder             | `d`       |
+| File      | Text or binary file  | `-`       |
+| Symlink   | Link to another file | `l`       |
+
+Use `ls -l` to check.
 
 </details>
 
 ---
 
 <details>
-<summary><strong>8. Page-by-Page Navigation</strong></summary>
-
-| Command | Description                           | Syntax        | Example          |
-| ------- | ------------------------------------- | ------------- | ---------------- |
-| `more`  | Paginate forward only                 | `more &lt;file&gt;` | `more long.txt`  |
-| `less`  | Paginate with forward/back navigation | `less &lt;file&gt;` | `less journal.txt` |
-
-</details>
-
----
-
-<details>
-<summary><strong>9. Filesystem Types in Linux</strong></summary>
-
-| Type        | Description        | Indicator |
-| ----------- | ------------------ | --------- |
-| Directory   | A folder           | `d`       |
-| File        | Text or binary     | `-`       |
-| Symlink     | Link to another    | `l`       |
-
-Check: `ls -l`
-
-</details>
-
----
-
-<details>
-<summary><strong>10. Quick Command Summary</strong></summary>
+<summary><strong>8. Quick Command Summary</strong></summary>
 
 ```bash
-touch file.txt        # create file
-file file.txt         # show type
-cp -i a b             # copy with prompt
-mv a b                # move/rename
-rm -i a               # delete with prompt
-cat file.txt          # display content
-head -n 5 file.txt    # first lines
-tail -f file.txt      # follow file
-less file.txt         # scroll
-stat file.txt         # metadata
+touch file.txt                # create file or update timestamp
+file file.txt                 # show file type
+cp -i a.txt b.txt             # copy with prompt
+mv a.txt b.txt                # move or rename
+rm -i a.txt                   # delete with prompt
+cat file.txt                  # display content
+head -n 5 file.txt            # show first lines
+tail -f file.txt              # follow updates
+less file.txt                 # scroll interactively
+stat file.txt                 # show metadata
+````
+
+</details>
+
+---
+
+<details>
+<summary><strong>9. Tips</strong></summary>
+
+* Describe `cp -i` as a safeguard against accidental overwrites.
+* Explain absolute vs relative paths with `/` vs `.` and `..`.
+* Use `ls -l` to identify file types.
+* Recall the difference between `more` and `less`.
+
+</details>
 
 ---
