@@ -5,7 +5,7 @@
 - [2. Most-Used grep Flags](#2-most-used-grep-flags)  
 - [3. Comparing & Counting](#3-comparing--counting)  
 - [4. Piping & Filtering](#4-piping--filtering)  
-- [5. Real-World Examples (from your grep.pdf)](#5-real-world-examples-from-your-greppdf)  
+- [5. Real-World Examples](#5-real-world)  
 - [6. Quick Command Summary](#6-quick-command-summary)  
 - [7. Tips](#7-tips)  
 
@@ -77,7 +77,7 @@ grep [OPTIONS] <pattern> <file(s)>
 ---
 
 <details>
-<summary><strong>5. Real-World Examples (from your grep.pdf)</strong></summary>
+<summary><strong>5. Real-World Examples </strong></summary>
 
 | Behavior                             | Command                     |
 | ------------------------------------ | --------------------------- |
