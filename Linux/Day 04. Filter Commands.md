@@ -5,26 +5,40 @@
 - [2. Most-Used grep Flags](#2-most-used-grep-flags)  
 - [3. Comparing & Counting](#3-comparing--counting)  
 - [4. Piping & Filtering](#4-piping--filtering)  
-- [5. Real-World Examples](#5-real-world)  
+- [5. Real-World Examples](#5-real-world-examples)  
 - [6. Quick Command Summary](#6-quick-command-summary)  
 - [7. Tips](#7-tips)  
+- [8. Appendix: pets.txt](#8-appendix-petstxt)  
 
 ---
 
 <details>
 <summary><strong>1. Pattern Searching with grep</strong></summary>
 
+## Theory & Notes
+
+- **Command structure**  
+  `grep [OPTIONS] <pattern> <file(s)>`  
+- **Pattern**  
+  A regular expression (or literal string) that `grep` will search for.  
+- **Files**  
+  One or more filenames, wildcards, or directories (with `-r`).  
+- **Output**  
+  By default, prints matching lines; options adjust colorization, context, counts, etc.
+
+---
+
 ```bash
 grep [OPTIONS] <pattern> <file(s)>
 ````
 
-| Action                       | Command & Description                                                |
-| ---------------------------- | -------------------------------------------------------------------- |
-| Basic, case-sensitive search | `grep 'cat' pets.txt`  – finds “cat” exactly as typed                |
-| Ignore case                  | `grep -i 'dog' pets.txt`  – matches “Dog”, “DOG”, etc.               |
-| Show line numbers            | `grep -n 'rabbit' pets.txt`  – prefixes lines with their line number |
-| Invert match                 | `grep -v 'snake' pets.txt`  – shows lines **without** “snake”        |
-| Search in all files of cwd   | `grep -i 'dog' *`  – searches every file in current directory        |
+| Action                       | Command & Description                                               |
+| ---------------------------- | ------------------------------------------------------------------- |
+| Basic, case-sensitive search | `grep 'cat' pets.txt` – finds “cat” exactly as typed                |
+| Ignore case                  | `grep -i 'dog' pets.txt` – matches “Dog”, “DOG”, etc.               |
+| Show line numbers            | `grep -n 'rabbit' pets.txt` – prefixes lines with their line number |
+| Invert match                 | `grep -v 'snake' pets.txt` – shows lines **without** “snake”        |
+| Search in all files of cwd   | `grep -i 'dog' *` – searches every file in current directory        |
 
 </details>
 
@@ -33,16 +47,23 @@ grep [OPTIONS] <pattern> <file(s)>
 <details>
 <summary><strong>2. Most-Used grep Flags</strong></summary>
 
-| Flag / Pattern | Description                            | Syntax                     | Example Usage               |
-| -------------- | ----------------------------------------- | -------------------------- | --------------------------- |
-| **`-i`**       | Case-insensitive search                   | `grep -i <pattern> <file>` | `grep -i "cat" pets.txt`    |
-| **`-w`**       | Match whole words only                    | `grep -w <pattern> <file>` | `grep -w "dog" pets.txt`    |
-| **`-n`**       | Prefix matches with line numbers          | `grep -n <pattern> <file>` | `grep -n "rabbit" pets.txt` |
-| **`-c`**       | Count matching lines                      | `grep -c <pattern> <file>` | `grep -c "snake" pets.txt`  |
-| **`-v`**       | Invert match (show non-matching lines)    | `grep -v <pattern> <file>` | `grep -v "cat" pets.txt`    |
-| **Search all** | Search all files in the current directory | `grep <pattern> ./*`       | `grep -i "dog" *`           |
-| **Search all `*.txt`** | Search all `.txt` files in the current directory | `grep <pattern> *.txt`   | `grep -i "cat" *.txt`       |
-| **`-r`**       | Recursive search through subdirectories   | `grep -r "<pattern>" .`    | `grep -r "rabbit" .`        |
+## Theory & Notes
+
+* Flags modify how `grep` interprets input and outputs results.
+* Common flags often combined for powerful searches.
+
+---
+
+| Flag / Pattern     | Description                             | Syntax                     | Example Usage               |
+| ------------------ | --------------------------------------- | -------------------------- | --------------------------- |
+| **`-i`**           | Case-insensitive search                 | `grep -i <pattern> <file>` | `grep -i "cat" pets.txt`    |
+| **`-w`**           | Match whole words only                  | `grep -w <pattern> <file>` | `grep -w "dog" pets.txt`    |
+| **`-n`**           | Prefix matches with line numbers        | `grep -n <pattern> <file>` | `grep -n "rabbit" pets.txt` |
+| **`-c`**           | Count matching lines                    | `grep -c <pattern> <file>` | `grep -c "snake" pets.txt`  |
+| **`-v`**           | Invert match (show non-matching lines)  | `grep -v <pattern> <file>` | `grep -v "cat" pets.txt`    |
+| **Search all**     | All files in current directory          | `grep <pattern> ./*`       | `grep -i "dog" *`           |
+| **Search `*.txt`** | All `.txt` files in current directory   | `grep <pattern> *.txt`     | `grep -i "cat" *.txt`       |
+| **`-r`**           | Recursive search through subdirectories | `grep -r "<pattern>" .`    | `grep -r "rabbit" .`        |
 
 </details>
 
@@ -50,6 +71,14 @@ grep [OPTIONS] <pattern> <file(s)>
 
 <details>
 <summary><strong>3. Comparing & Counting</strong></summary>
+
+## Theory & Notes
+
+* **`wc` (“word count”)** reports counts for lines, words, and bytes.
+* By default, `wc <file>` prints all three counts.
+* Combine flags to focus on one metric.
+
+---
 
 | Task                  | Command          |
 | --------------------- | ---------------- |
@@ -65,7 +94,15 @@ grep [OPTIONS] <pattern> <file(s)>
 <details>
 <summary><strong>4. Piping & Filtering</strong></summary>
 
-| Description                     | Pipeline Example                                   |
+## Theory & Notes
+
+* **Pipes (`|`)** connect the output of one command as input to the next.
+* Combining `grep`, `cut`, `wc`, and others lets you build powerful, one-liner filters.
+* Order matters: each stage transforms the data for the next.
+
+---
+
+| Description                  | Pipeline Example                                   |
 | ---------------------------- | -------------------------------------------------- |
 | Chain commands               | `cat pets.txt \| grep -i cat \| wc -l`             |
 | Extract species field        | `cut -d';' -f2 pets.txt \| grep -w 'dog' \| wc -l` |
@@ -77,7 +114,14 @@ grep [OPTIONS] <pattern> <file(s)>
 ---
 
 <details>
-<summary><strong>5. Real-World Examples </strong></summary>
+<summary><strong>5. Real-World Examples</strong></summary>
+
+## Theory & Notes
+
+* Examples illustrate common tasks you’ll encounter in logs, CSVs, and scripts.
+* Adapt patterns and file globs to your own data.
+
+---
 
 | Behavior                             | Command                     |
 | ------------------------------------ | --------------------------- |
@@ -93,6 +137,13 @@ grep [OPTIONS] <pattern> <file(s)>
 
 <details>
 <summary><strong>6. Quick Command Summary</strong></summary>
+
+## Theory & Notes
+
+* A rapid reminder of the most common filter commands.
+* Good for a quick reference or adding to your shell aliases.
+
+---
 
 ```bash
 grep 'cat' pets.txt               # basic search
@@ -111,11 +162,20 @@ wc -l pets.txt                    # count lines
 <details>
 <summary><strong>7. Tips</strong></summary>
 
+## Theory & Notes
+
+* Use anchors (`^`, `$`) to match start or end of line.
+* Highlight matches with `--color=auto`.
+* Combine with `head`/`tail` for sampling output.
+* Remember `-R` follows symlinks, while `-r` does not.
+
+---
+
 * Anchor start/end with `^` or `$`:
 
   ```bash
-  grep '^Marley' pets.txt   # lines starting with “Marley”
-  grep 'Ln$' pets.txt       # lines ending with “Ln”
+  grep '^Marley' pets.txt
+  grep 'Ln$' pets.txt
   ```
 * Highlight matches with color:
 
@@ -133,7 +193,11 @@ wc -l pets.txt                    # count lines
 
 ---
 
-<details> <summary><strong>8. Appendix: pets.txt</strong></summary>
+<details>
+<summary><strong>8. Appendix: pets.txt</strong></summary>
+
+Raw data file used in examples:
+
 Zion Johnson ; DOG ; BEAGLE ; May 2013 ;10 ;  891 Coral Reef Ave City57 AZ 64920 ;555-2722
 Quinn Phillips ,Parrot ,African Grey , Feb 2020 ,4,  1804 Crestwood Ave City10 TN 32918,555-6503
 Payton Young , Dog ; Labrador , Jul 2022 ,2 , 2147 Lakeview Rd City36 CO 83816 ;555-6834
@@ -184,4 +248,3 @@ Chandler Carter ,DOG ,Golden Retriever , Jan 2022 ,2 , 320 Pine Rd City20 VA 238
 
 </details>
 
----
