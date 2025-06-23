@@ -35,7 +35,7 @@ grep [OPTIONS] <pattern> <file(s)>
 | Action                       | Command & Description                                               |
 | ---------------------------- | ------------------------------------------------------------------- |
 | Basic, case-sensitive search | `grep 'cat' pets.txt` – finds “cat” exactly as typed                |
-| Ignore case                  | `grep -i 'dog' pets.txt` – matches “Dog”, “DOG”, etc.               |
+| Ignore case-sensitive search | `grep -i 'dog' pets.txt` – matches “Dog”, “DOG”, etc.               |
 | Show line numbers            | `grep -n 'rabbit' pets.txt` – prefixes lines with their line number |
 | Invert match                 | `grep -v 'snake' pets.txt` – shows lines **without** “snake”        |
 | Search in all files of cwd   | `grep -i 'dog' *` – searches every file in current directory        |
@@ -82,7 +82,7 @@ grep [OPTIONS] <pattern> <file(s)>
 
 | Task                  | Command          |
 | --------------------- | ---------------- |
-| Word/line/char count  | `wc pets.txt`    |
+| Line/word/char count  | `wc pets.txt`    |
 | Count only lines      | `wc -l pets.txt` |
 | Count only words      | `wc -w pets.txt` |
 | Count only characters | `wc -c pets.txt` |
@@ -96,18 +96,26 @@ grep [OPTIONS] <pattern> <file(s)>
 
 ## Theory & Notes
 
-* **Pipes (`|`)** connect the output of one command as input to the next.
-* Combining `grep`, `cut`, `wc`, and others lets you build powerful, one-liner filters.
-* Order matters: each stage transforms the data for the next.
+- **column:** Aligns text into columns using delimiters (tabs by default).  
+- **cut:** Extracts specific fields or character ranges from each line.  
+- **nl:** Adds line numbers to input.  
+- **pr:** Formats text for print layouts (e.g., multi-column, headers/footers).  
+- **sort:** Orders lines lexicographically, numerically, by month-name, or custom keys.  
+- **tee:** Splits a stream, writing to both stdout and files.  
+- **tr:** Translates or deletes characters (e.g., convert delimiters).  
+- **uniq:** Filters or counts adjacent duplicate lines—useful after sorting.
 
----
 
-| Description                  | Pipeline Example                                   |
-| ---------------------------- | -------------------------------------------------- |
-| Chain commands               | `cat pets.txt \| grep -i cat \| wc -l`             |
-| Extract species field        | `cut -d';' -f2 pets.txt \| grep -w 'dog' \| wc -l` |
-| List entries without “snake” | `grep -v 'snake' pets.txt \| wc -l`                |
-| Count “rabbit” entries       | `grep -w 'rabbit' pets.txt \| wc -l`               |
+| Command    | Description                                                    | Syntax                                  | Usage Example (using `pets.txt`)                                                                 |
+|------------|----------------------------------------------------------------|-----------------------------------------|--------------------------------------------------------------------------------------------------|
+| **column** | Formats input into a well-aligned table using delimiters       | `column [options] <filename>`           | `tr ',' '\t' < pets.txt \| column -t \| head -5`                                                 |
+| **cut**    | Prints selected parts of lines (fields) from each file         | `cut -d<DELIM> -f<fields> <filename>`   | `cut -d',' -f1 pets.txt \| head -5`                                                              |
+| **nl**     | Numbers the lines of a file or standard input                  | `nl <filename>`                         | `nl pets.txt \| head -5`                                                                          |
+| **pr**     | Prepares a text file for printing (columns, headers, footers)  | `pr [options] <filename>`               | `pr -t -2 pets.txt \| head -20`  *(two-column layout, no header)*                                |
+| **sort**   | Sorts lines of text in various orders (lexicographic, numeric, month) | `sort [options] <filename>`             | `sort -f pets.txt \| head -5` *(case-insensitive)*<br>`sort -M pets.txt \| head -5` *(month-name sort)*<br>`sort -n pets.txt \| head -5` *(numeric sort on “Age”)*<br>`sort -t',' -k1,1 pets.txt \| head -5` *(comma-delimited, sort by Owner)* |
+| **tee**    | Reads from stdin and writes to both stdout and files           | `tee <filename>`                        | `pr -t -2 pets.txt \| tee formatted_pets.txt`  *(capture two-column output)*                      |
+| **tr**     | Translates or deletes characters in input                      | `tr <set1> <set2> < <filename>`         | `tr ',' '\\t' < pets.txt \| head -5`<br>`tr ',' '\\t' < pets.txt \| column -t \| head -5`          |
+| **uniq**   | Filters out or reports adjacent duplicate lines                | `uniq [options] <filename>`             | `cut -d',' -f2 pets.txt \| sort \| uniq -c \| head -5` *(count pet types)*<br>`cut -d',' -f2 pets.txt \| sort \| uniq -d` *(show duplicated types)* |
 
 </details>
 
