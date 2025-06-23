@@ -39,6 +39,7 @@
   - `rmdir <dir>` only removes an empty directory.  
   - `rm -rf <dir>` force-deletes a directory and _all_ of its contents (files and subdirectories). **Use with caution!**
 
+
 ---
 
 | Command    | Description                | Syntax            | Example                              |
@@ -82,11 +83,12 @@
 | Command   | Description                            | Syntax / Example           |
 | --------- | -------------------------------------- | -------------------------- |
 | `ls`      | List files and directories             | `ls`                       |
-| `ls -l`   | Detailed list (permissions, size, etc) in alphabetical order  | `ls -l`                    |
-| `ls -a`   | Include hidden files                   | `ls -a`                    |
-| `ls -lh`  | Long format with human-readable sizes  | `ls -lh`                   |
-| `ls -lt`  | Sort by modification time (newest first) | `ls -lt`                   |
-| `ls -ltr` | Sort by modification time (oldest first) | `ls -ltr`                  |
+| `ls -l`   | Detailed list (permissions, size, etc) in alphabetical order  | `ls -l` |
+| `ls -lr`  | Detailed list (permissions, size, etc) in reverse alphabetical order  | `ls -l` |
+| `ls -a`   | Include hidden files                     | `ls -a`                     |
+| `ls -lh`  | Long format with human-readable sizes    | `ls -lh`                    |
+| `ls -lt`  | Sort by modification time (newest first) | `ls -lt`                    |
+| `ls -ltr` | Sort by modification time (oldest first) | `ls -ltr`                   |
 | `ls -ld`  | Show directory info instead of contents | `ls -ld <dir>` (e.g., `ls -ld devops/`) |
 
 </details>
