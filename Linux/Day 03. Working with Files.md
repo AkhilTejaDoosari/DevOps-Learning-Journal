@@ -42,7 +42,7 @@
 ## Theory & Notes
 
 - **Copy (`cp`)**  
-  - Basic: `cp <source> <dest>` duplicates files or directories.  
+  - Basic: `cp <source> <destination>` duplicates files or directories.  
   - **Interactive** (`-i`): prompts before overwrite.  
   - **Verbose** (`-v`): prints each copy action, e.g.  
     ```bash
@@ -57,6 +57,8 @@
   - Supports `-i` and `-v` as well.
   - Use `mv` instead of `cp` + `rm` to preserve file metadata.
 
+- **Tip**
+  - `cp -iv <source> <destination>`
 ---
 
 | Command  | Description                                | Syntax                          | Example                          |
