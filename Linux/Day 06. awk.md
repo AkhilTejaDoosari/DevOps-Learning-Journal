@@ -1,14 +1,14 @@
 # 🐧 Day 06 – awk Text Processing
 
 - [1. awk Overview](#1-awk-overview)  
-  - [1.1 Basic Printing](#11-basic-printing)  
-  - [1.2 Field Extraction](#12-field-extraction)  
-  - [1.3 Pattern Matching](#13-pattern-matching)  
-  - [1.4 Line Numbers & Field Counts](#14-line-numbers--field-counts)  
-  - [1.5 Custom Field Separator](#15-custom-field-separator)  
-  - [1.6 Conditionals](#16-conditionals)  
-  - [1.7 Length Filtering](#17-length-filtering)  
-  - [1.8 Quick Recap](#18-quick-recap)
+- [2. Basic Printing](#2-basic-printing)  
+- [3. Field Extraction](#3-field-extraction)  
+- [4. Pattern Matching](#4-pattern-matching)  
+- [5. Line Numbers & Field Counts](#5-line-numbers--field-counts)  
+- [6. Custom Field Separator](#6-custom-field-separator)  
+- [7. Conditionals](#7-conditionals)  
+- [8. Length Filtering](#8-length-filtering)  
+- [9. Quick Command Summary](#9-quick-command-summary)
 
 ---
 
@@ -45,8 +45,10 @@
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.1 Basic Printing</strong></summary>
+<summary><strong>2. Basic Printing</strong></summary>
 
 - **Print entire file** (like `cat`)  
   ```bash
@@ -58,8 +60,10 @@
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.2 Field Extraction</strong></summary>
+<summary><strong>3. Field Extraction</strong></summary>
 
 * **Print only the date (field 1)**
 
@@ -76,8 +80,10 @@
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.3 Pattern Matching</strong></summary>
+<summary><strong>4. Pattern Matching</strong></summary>
 
 * **Print only lines containing “ERROR”**
 
@@ -94,8 +100,10 @@
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.4 Line Numbers & Field Counts</strong></summary>
+<summary><strong>5. Line Numbers & Field Counts</strong></summary>
 
 * **Print each line with its line number**
 
@@ -110,8 +118,10 @@
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.5 Custom Field Separator</strong></summary>
+<summary><strong>6. Custom Field Separator</strong></summary>
 
 * **Use `:` as delimiter, then print field count**
 
@@ -123,8 +133,10 @@
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.6 Conditionals</strong></summary>
+<summary><strong>7. Conditionals</strong></summary>
 
 * **Print only “ERROR” lines via `if`**
 
@@ -136,8 +148,10 @@
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.7 Length Filtering</strong></summary>
+<summary><strong>8. Length Filtering</strong></summary>
 
 * **Print only lines longer than 70 characters**
 
@@ -149,8 +163,10 @@
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.8 Quick Recap</strong></summary>
+<summary><strong>9. Quick Command Summary</strong></summary>
 
 | Command                               | Description                              |
 | ------------------------------------- | ---------------------------------------- |
