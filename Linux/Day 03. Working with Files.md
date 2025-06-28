@@ -134,9 +134,9 @@
   - `tail <file>` By default it shows the last 10 lines.  
   - `tail -n N <file>` shows the last **N** lines.
 
-- **Paging**  
-  - `more <file>` paginates forward only (page by page view).  
-  - `less <file>` allows forward/backward navigation (preferred).
+- **Page by page**  
+  - `more <file>` paginates forward only.  
+  - `less <file>` allows forward/backward navigation (preferred use `q` to exit).
 
 ---
 
