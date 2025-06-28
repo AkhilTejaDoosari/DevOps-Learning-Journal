@@ -176,6 +176,7 @@ Alice, January, 55000
 
 ---
 
+
 <details>
 <summary><strong>6. Multiple Commands in One Pass</strong></summary>
 
