@@ -227,7 +227,7 @@
 
 </details>
 
-
+---
 
 <details>
 <summary><strong>7. Quick Command Summary<code>uname</code></strong></summary>
