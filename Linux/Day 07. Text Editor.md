@@ -14,6 +14,7 @@
 - [6. Save & Exit](#6-save--exit)
 - [7. Searching & Replacing](#7-searching--replacing)
 - [8. Widely Used Workflows](#8-widely-used-workflows)
+- [9. Quick File Edits (echo, cat, sed)](#9-quick-file-edits-(echo,cat,sed))
 
 ---
 
@@ -154,7 +155,7 @@
 ---
 
 <details>
-<summary><strong>9. Quick File Edits (echo, cat, sed) – Detailed Examples</strong></summary>
+<summary><strong>9. Quick File Edits (echo, cat, sed)</strong></summary>
 
 ### 9.1 Append a Single Line with `echo`
 
