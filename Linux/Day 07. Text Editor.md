@@ -150,3 +150,81 @@
   ```
 
 </details>
+
+---
+
+<details>
+<summary><strong>9. Quick File Edits (echo, cat, sed) – Detailed Examples</strong></summary>
+
+### 9.1 Append a Single Line with `echo`
+
+**Use case:** Add a new entry to a CSV or text file without opening an editor.
+
+```bash
+# File: employees.csv
+Alice, January, 55000
+Bob, February, 75000
+
+
+# Append a new employee record
+echo "3,Carol,Sales" >> employees.csv
+
+# Verify by showing the last line
+tail -n1 employees.csv
+Navya ,October ,95000
+````
+
+* `>>` means “append”; if the file doesn’t exist, it’s created.
+* Always verify with `tail -n1` or `tail -n2` after appending.
+
+---
+
+### 9.2 Append Multiple Lines via Here-Doc (`cat`)
+
+**Use case:** Add several entries or a block of config to a file in one command.
+
+```bash
+# File: pets.csv
+Zion Johnson, DOG, BEAGLE  
+Quinn Phillips, Parrot, African Grey  
+Payton Young, Dog, Labrador  
+
+# Append two new pet records
+cat <<EOF >> pets.txt
+Akhil Teja, Cat, Persian
+Navya Bommishetti, Cat, British shorthair
+EOF
+
+# Verify by viewing the last two lines
+tail -n2 pets.txt
+```
+
+* `<<EOF` opens a “here-document”; everything until the next `EOF` is sent to `cat`.
+* Good for appending structured blocks.
+
+---
+
+### 9.3 Insert a Header Row in a CSV with `sed`
+
+**Use case:** Add or remove specific lines based on content.
+
+```bash
+# File: fruits.txt
+Mango, Summer, 1.99
+Apple, Autumn, 1.49
+Kiwi, Winter, 2.50
+Strawberry, Spring, 2.99
+Banana, Year-round, 0.59
+
+# Insert a header before the first line
+sed -i '1i type,season,price' fruits.csv
+
+# Verify:
+head -n3 fruits.csv
+type,season,price
+Mango, Summer, 1.99
+Apple, Autumn, 1.49
+```
+
+* `1i` tells `sed` to insert before line 1.
+* `-i` edits the file in-place.
