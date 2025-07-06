@@ -2,9 +2,9 @@
 
 ## Table of Contents
 - [1. Understanding vi/vim](#1-understanding-vivim)
-- [2. Editing Workflows](#2-editing-workflows)
+- [2. Widely Used Workflows](#2-widely-used-workflows)
 - [3. File Manipulation Shortcuts](#3-file-manipulation-shortcuts)
-- [4. Command Reference](#4-command-reference)
+- [4. Quick Command Summary](#4-quick-command-summary)
 
 <details>
 <summary><strong>1. Understanding vi/vim</strong></summary>
