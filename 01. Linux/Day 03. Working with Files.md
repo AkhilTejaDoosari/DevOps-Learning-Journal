@@ -107,8 +107,8 @@
 - **Concatenate (`cat`)**  
   - `cat <file>` prints entire file.  
   - `cat -n <file>` numbers all output lines.  
-  - `tac <file>` prints in reverse order.  
-  - `nl <file>` numbers lines (alternative style).
+  - `tac <file>` prints in reverse order. (tac does not support -n option) 
+  - `nl <file>` numbers lines (alternative style cannot be commbined with cat or tac).
 
 ---
 
@@ -123,20 +123,21 @@
 
 ---
 
+
 <details>
 <summary><strong>5. Previewing File Sections</strong></summary>
 
 ## Theory & Notes
 
 - **Head/Tail**  
-  - `head <file>` shows the first 10 lines.  
-  - `head -n N <file>` shows the first N lines.  
-  - `tail <file>` shows the last 10 lines.  
-  - `tail -n N <file>` shows the last N lines.
+  - `head <file>` By default it shows the first 10 lines.  
+  - `head -n N <file>` shows the first **N** lines.  
+  - `tail <file>` By default it shows the last 10 lines.  
+  - `tail -n N <file>` shows the last **N** lines.
 
-- **Paging**  
+- **Page by page**  
   - `more <file>` paginates forward only.  
-  - `less <file>` allows forward/backward navigation (preferred).
+  - `less <file>` allows forward/backward navigation (preferred use `q` to exit).
 
 ---
 
@@ -180,14 +181,39 @@ Use `ls -l` to view these indicators.
 <details>
 <summary><strong>7. Quick Command Summary</strong></summary>
 
-```bash
-touch file.txt                     # create file or update timestamp
-file file.txt                      # show file type
-cp -i a.txt b.txt                  # copy with prompt
-mv a.txt b.txt                     # move or rename
-rm -i a.txt                        # delete with prompt
-cat file.txt                       # display content
-head -n 5 file.txt                 # show first lines
-tail -f file.txt                   # follow updates
-less file.txt                      # scroll interactively
-stat file.txt                      # show metadata
+### Commands Quick Recap
+
+| Command    | Description                                | Syntax                          | Example                          |
+| ---------- | ------------------------------------------ | ------------------------------- | -------------------------------- |
+| `touch`    | Create file or update timestamps           | `touch <filename>`              | `touch file1.txt`                |
+| `file`     | Identify the type of a file                | `file <filename>`               | `file file1.txt`                 |
+| `stat`     | Display file metadata (size, timestamps)   | `stat <filename>`               | `stat file1.txt`                 |
+| `cp`       | Copy files or directories                  | `cp <source> <dest>`            | `cp file1.txt file2.txt`         |
+| `cp -i`    | Prompt before overwrite                    | `cp -i <src> <dest>`            | `cp -i file1.txt file2.txt`      |
+| `cp -v`    | Show each copy action                      | `cp -v <src> <dest>`            | `cp -v file1.txt backup/`        |
+| `cp -r`    | Copy directories recursively               | `cp -r <src_dir> <dest_dir>`    | `cp -r src/ backup/`             |
+| `cp -rv`   | Recursive copy with verbose output         | `cp -rv <src_dir> <dest_dir>`   | `cp -rv src/ backup/`            |
+| `mv`       | Move or rename files or directories        | `mv <source> <dest>`            | `mv file2.txt file3.txt`         |
+| `rm`       | Remove a file                              | `rm <filename>`                 | `rm file3.txt`                   |
+| `rm -i`    | Prompt before deletion                     | `rm -i <filename>`              | `rm -i file3.txt`                |
+| `rm -r`    | Remove directories and contents            | `rm -r <directory>`             | `rm -r devops/`                  |
+| `rm -f`    | Force delete without prompt                | `rm -f <filename>`              | `rm -f file3.txt`                |
+| `cat`      | Print file content                         | `cat <file>`                    | `cat file1.txt`                  |
+| `cat -n`   | Print content with line numbers            | `cat -n <file>`                 | `cat -n file1.txt`               |
+| `tac`      | Print file content in reverse order        | `tac <file>`                    | `tac file1.txt`                  |
+| `nl`       | Number lines                               | `nl <file>`                     | `nl file1.txt`                   |
+| `head`     | Show first 10 lines                        | `head <file>`                   | `head file2.txt`                 |
+| `head -n`  | Show first N lines                         | `head -n 5 <file>`              | `head -n 5 file2.txt`            |
+| `tail`     | Show last 10 lines                         | `tail <file>`                   | `tail file2.txt`                 |
+| `tail -n`  | Show last N lines                          | `tail -n 7 <file>`              | `tail -n 7 file2.txt`            |
+| `more`     | Paginate forward only                      | `more <file>`                   | `more long.txt`                  |
+| `less`     | Paginate with navigation (forward/backward)| `less <file>`                   | `less journal.txt`               |
+
+### Filesystem Types in Linux
+
+| Type      | Description          | Indicator |
+| --------- | -------------------- | --------- |
+| Directory | A folder             | `d`       |
+| File      | Text or binary file  | `-`       |
+| Symlink   | Link to another file | `l`       |
+

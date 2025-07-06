@@ -1,12 +1,12 @@
 # 🐧 Day 05 – sed Stream Editor
 
 - [1. sed Overview](#1-sed-overview)  
-  - [1.1 Basic Substitutions](#11-basic-substitutions)  
-  - [1.2 Targeted Substitutions in a File](#12-targeted-substitutions-in-a-file)  
-  - [1.3 Deletions & Printing Ranges](#13-deletions--printing-ranges)  
-  - [1.4 Insertion & Appending](#14-insertion--appending)  
-  - [1.5 Multiple Commands in One Pass](#15-multiple-commands-in-one-pass)  
-  - [1.6 Quick Recap](#16-quick-recap)
+- [2. Basic Substitutions](#2-basic-substitutions)  
+- [3. Targeted Substitutions in a File](#3-targeted-substitutions-in-a-file)  
+- [4. Deletions & Printing Ranges](#4-deletions--printing-ranges)  
+- [5. Insertion & Appending](#5-insertion--appending)  
+- [6. Multiple Commands in One Pass](#6-multiple-commands-in-one-pass)  
+- [7. Quick Command Summary](#7-quick-command-summary)
 
 ---
 <details>
@@ -43,8 +43,10 @@ Alice, January, 55000
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.1 Basic Substitutions</strong></summary>
+<summary><strong>2 Basic Substitutions</strong></summary>
 
 - **TASK:** Turn “Hello World!” to “Hello Linux!”  
   ```bash
@@ -76,8 +78,10 @@ Alice, January, 55000
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.2 Targeted Substitutions in a File</strong></summary>
+<summary><strong>3. Targeted Substitutions in a File</strong></summary>
 
 * **Delete all lines containing “Alice”**
 
@@ -114,8 +118,10 @@ Alice, January, 55000
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.3 Deletions & Printing Ranges</strong></summary>
+<summary><strong>4. Deletions & Printing Ranges</strong></summary>
 
 * **Print only lines 3–7**
 
@@ -143,8 +149,10 @@ Alice, January, 55000
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.4 Insertion & Appending</strong></summary>
+<summary><strong>5. Insertion & Appending</strong></summary>
 
 * **Insert before line 10 (no save)**
 
@@ -166,8 +174,11 @@ Alice, January, 55000
 
 </details>
 
+---
+
+
 <details>
-<summary><strong>1.5 Multiple Commands in One Pass</strong></summary>
+<summary><strong>6. Multiple Commands in One Pass</strong></summary>
 
 * **Run two edits at once**
 
@@ -177,8 +188,10 @@ Alice, January, 55000
 
 </details>
 
+---
+
 <details>
-<summary><strong>1.6 Quick Recap</strong></summary>
+<summary><strong>7. Quick Command Summary</strong></summary>
 
 | Syntax                | Description                                     | Example                                                      |
 | --------------------- | ----------------------------------------------- | ------------------------------------------------------------ |

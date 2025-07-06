@@ -1,121 +1,68 @@
-# 🐧 Day 07 - Text Editor
-
-> **Purpose:** Core vi/vim commands & concepts you’ll use ~80% of the time, plus common editing workflows.
-
----
+# 🐧 Day 07 – Text Editor
 
 ## Table of Contents
-
-- [1. Why vi/vim?](#1-why-vi-vim)
-- [2. Core Modes](#2-core-modes)
-- [3. Navigation](#3-navigation)
-- [4. Basic Editing](#4-basic-editing)
-- [5. Copy & Paste](#5-copy--paste)
-- [6. Save & Exit](#6-save--exit)
-- [7. Searching & Replacing](#7-searching--replacing)
-- [8. Widely Used Workflows](#8-widely-used-workflows)
-
----
+- [1. Understanding vi/vim](#1-understanding-vivim)
+- [2. Editing Workflows](#2-editing-workflows)
+- [3. File Manipulation Shortcuts](#3-file-manipulation-shortcuts)
+- [4. Command Reference](#4-command-reference)
 
 <details>
-<summary><strong>1. Why vi/vim?</strong></summary>
+<summary><strong>1. Understanding vi/vim</strong></summary>
 
-- **vi:** the original Unix editor always available.  
-- **vim:** “vi IMproved” with extra features; fully backward compatible.  
-- **Key benefit:** ultra lightweight modal editing → fast navigation & edits without leaving the keyboard.
+### Editor Overview
+- **vi** = original UNIX editor (always available)
+- **vim** = “vi IMproved” (extra features, backward compatible)
+- **Modal Editing:** separate modes for navigation vs insertion
+
+#### Core Modes
+| Mode               | Activation            | Purpose                         |
+| ------------------ | --------------------- | ------------------------------- |
+| Normal (Command)   | default               | navigate, delete, yank, etc.    |
+| Insert             | `i`, `a`, `o`         | insert text                     |
+| Command-line       | `:`                   | save, quit, search & replace    |
+
+#### Navigation Keys
+| Keys | Action                    |
+| ---- | ------------------------- |
+| `h`  | move left                 |
+| `j`  | move down                 |
+| `k`  | move up                   |
+| `l`  | move right                |
+| `w`  | jump to next word         |
+| `b`  | jump to previous word     |
+| `0`  | go to beginning of line   |
+| `$`  | go to end of line         |
+> Repeat count: prepend a number (e.g., 5j moves down 5 lines)
+#### Editing Commands
+| Command  | Description                        |
+| -------- | ---------------------------------- |
+| `x`      | delete character under cursor      |
+| `dd`     | delete (cut) current line          |
+| `cw`     | change word (enters insert mode)   |
+| `u`      | undo last change                   |
+| `Ctrl+R` | redo                               |
+
+### Save & Exit
+- :w → save   
+- :q → quit (fails if unsaved changes)   
+- :wq or :x → save + quit (:x skips if no edits)   
+- :q! → quit without saving   
+
+### Searching & Replacing   
+| Command           | Description                                           |   
+|-------------------|-------------------------------------------------------|   
+| `/pattern`        | Search forward for pattern                            |   
+| `?pattern`        | Search backward for pattern                           |   
+| `n` / `N`         | Repeat search forward / backward                      |   
+| `:%s/old/new/g`   | Replace all occurrences of old with new in file       |   
+| `:%s/old/new/gc`  | Replace with confirmation for each change             |   
 
 </details>
 
 ---
 
 <details>
-<summary><strong>2. Core Modes</strong></summary>
-
-- **Normal (Command):** navigate & issue commands  
-- **Insert (`i`):** start typing; back to Normal with `Esc`  
-- **Escape (Command-line)(`:`):** file-level ops (save, quit, replace)
-
-</details>
-
----
-
-<details>
-<summary><strong>3. Navigation</strong></summary>
-
-- `h`/`j`/`k`/`l` → left/down/up/right  
-- `w` → jump to next word start  
-- `b` → back to previous word start  
-- `0` → line start; `$` → line end  
-- **Repeat count:** prepend a number (e.g., `5j` moves down 5 lines)
-
-</details>
-
----
-
-<details>
-<summary><strong>4. Basic Editing</strong></summary>
-
-- **Enter Insert:** `i` (before cursor), `a` (after cursor), `o` (new line)  
-
-- **Delete:**  
-  - `x` → delete char under cursor  
-  - `dd` → delete (cut) current line  
-
-- **Change:**  
-  - `cw` → change word (enters Insert)  
-
-- **Undo/Redo:**  
-  - `u` → undo  
-  - `Ctrl+R` → redo  
-
-</details>
-
----
-
-<details>
-<summary><strong>5. Copy & Paste</strong></summary>
-
-- **Yank (copy):**  
-  - `yy` → copy line  
-  - `5yy` → copy 5 lines  
-
-- **Put (paste):**  
-  - `p` → after cursor/line  
-  - `P` → before cursor/line  
-
-</details>
-
----
-
-<details>
-<summary><strong>6. Save & Exit</strong></summary>
-
-- `:w` → save  
-- `:q` → quit (fails if unsaved changes)  
-- `:wq` or `:x` → save + quit (`:x` skips if no edits)  
-- `:q!` → quit without saving  
-
-</details>
-
----
-
-<details>
-<summary><strong>7. Searching & Replacing</strong></summary>
-
-| Command           | Description                                           |
-|-------------------|-------------------------------------------------------|
-| `/pattern`        | Search forward for pattern                            |
-| `?pattern`        | Search backward for pattern                           |
-| `n` / `N`         | Repeat search forward / backward                      |
-| `:%s/old/new/g`   | Replace all occurrences of old with new in file       |
-| `:%s/old/new/gc`  | Replace with confirmation for each change             |
-
-</details>
-
----
-
-<details>
-<summary><strong>8. Widely Used Workflows</strong></summary>
+<summary><strong>2. Widely Used Workflows</strong></summary>
 
 - **Quick Edit & Save:**  
   ```bash
@@ -148,5 +95,64 @@
   u                  # undo
   Ctrl+R             # redo
   ```
+
+</details>
+
+---
+
+<details>
+<summary><strong>3. File Manipulation Shortcuts</strong></summary>
+
+```bash
+# Append a line to file
+echo "New line" >> notes.txt
+tail -n1 notes.txt
+```
+
+```bash
+# Append multiple lines via here-doc
+cat <<EOF >> pets.txt
+Akhil Teja, Cat, Persian
+Navya, Cat, British Shorthair
+EOF
+```
+
+```bash
+# Insert header row with sed
+sed -i '1i Name,Category,Value' data.csv
+head -n3 data.csv
+```
+
+</details>
+
+---
+
+<details>
+<summary><strong>4. Quick Command Summary</strong></summary>
+
+| Command          | Syntax           | Example            | Description                                   |
+| ---------------- | ---------------- | ------------------ | --------------------------------------------- |
+| `h`              | `h`              | `h`                | Move cursor left                              |
+| `j`              | `j`              | `j`                | Move cursor down                              |
+| `k`              | `k`              | `k`                | Move cursor up                                |
+| `l`              | `l`              | `l`                | Move cursor right                             |
+| `w`              | `w`              | `w`                | Jump to next word                             |
+| `b`              | `b`              | `b`                | Jump to previous word                         |
+| `0`              | `0`              | `0`                | Go to beginning of line                       |
+| `$`              | `$`              | `$`                | Go to end of line                             |
+| `i`              | `i`              | `iNew text<Esc>`   | Enter Insert mode before cursor               |
+| `a`              | `a`              | `aMore text<Esc>`  | Enter Insert mode after cursor                |
+| `o`              | `o`              | `oLine below<Esc>` | Open new line below and enter Insert          |
+| `x`              | `x`              | `x`                | Delete character under cursor                 |
+| `dd`             | `dd`             | `dd`               | Delete (cut) current line                     |
+| `yy`             | `yy`             | `yy`               | Yank (copy) current line                      |
+| `p`              | `p`              | `p`                | Put (paste) after cursor or below line        |
+| `u`              | `u`              | `u`                | Undo last change                              |
+| `Ctrl+R`         | `Ctrl+R`         | *press*            | Redo change                                   |
+| `:w`             | `:w`             | `:w`               | Write (save) file                             |
+| `:q`             | `:q`             | `:q`               | Quit editor (fails if unsaved changes)        |
+| `:wq` / `:x`     | `:wq` / `:x`     | `:wq`              | Write file and quit                           |
+| `:%s/old/new/g`  | `:%s/old/new/g`  | `:%s/is/are/g`     | Replace all occurrences                       |
+| `:%s/old/new/gc` | `:%s/old/new/gc` | `:%s/is/are/gc`    | Replace with confirmation for each occurrence |
 
 </details>

@@ -4,12 +4,13 @@
 
 ## Table of Contents
 
-- [1. Directory Navigation](#directory-navigation)  
-- [2. Listing Directory Contents](#listing-directory-contents)  
-- [Terminal Essentials](#terminal-essentials)  
-- [System Information](#system-information)  
-- [Getting Help](#getting-help)  
-- [System Info via `uname`](#system-info-via-uname)  
+- [1. Directory Navigation](#1-directory-navigation)  
+- [2. Listing Directory Contents](#2-listing-directory-contents)  
+- [3. Terminal Essentials](#3-terminal-essentials)  
+- [4. System Information](#4-system-information)  
+- [5. Getting Help](#5-getting-help)  
+- [6. System Info via `uname`](#6-system-info-via-uname)  
+- [7. Quick Command Summary](#7-quick-command-summary) 
 
 ---
 
@@ -226,3 +227,43 @@
 
 </details>
 
+---
+
+<details>
+<summary><strong>7. Quick Command Summary<code>uname</code></strong></summary>
+### Commands Quick Recap
+
+| Command     | Description                                 | Syntax                          | Example                             |
+| ----------- | ------------------------------------------- | ------------------------------- | ----------------------------------- |
+| `pwd`       | Show current directory                      | `pwd`                           | `pwd`                               |
+| `cd`        | Change directory                            | `cd <dir>`                      | `cd linux`                          |
+| `cd ..`     | Go up one directory level                   | `cd ..`                         | `cd ..`                             |
+| `mkdir`     | Create a new directory                      | `mkdir <dir>`                   | `mkdir devops`                      |
+| `mkdir -p`  | Create nested directories                   | `mkdir -p a/b/c`                | `mkdir -p akhil/linux/backup`       |
+| `rmdir`     | Remove empty directory                      | `rmdir <dir>`                   | `rmdir devops`                      |
+| `rm -rf`    | Delete non-empty directory                  | `rm -rf <dir>`                  | `rm -rf akhil`                      |
+| `ls`        | List files and directories                  | `ls`                            | `ls`                                |
+| `ls -l`     | Detailed list (permissions, size, etc.)     | `ls -l`                         | `ls -l`                             |
+| `ls -lr`    | Detailed list in reverse alphabetical order | `ls -lr`                        | `ls -lr`                            |
+| `ls -a`     | Include hidden files                        | `ls -a`                         | `ls -a`                             |
+| `ls -lh`    | Long format with human-readable sizes        | `ls -lh`                        | `ls -lh`                            |
+| `ls -lt`    | Sort by modification time (newest first)    | `ls -lt`                        | `ls -lt`                            |
+| `ls -ltr`   | Sort by modification time (oldest first)    | `ls -ltr`                       | `ls -ltr`                           |
+| `ls -ld`    | Show directory info instead of contents     | `ls -ld <dir>`                  | `ls -ld devops/`                    |
+| `clear`     | Clear the terminal screen                   | `clear`                         | `clear`                             |
+| `history`   | Show command history                        | `history`                       | `history`                           |
+| `!<num>`    | Re-run command by history number            | `!<num>`                        | `!42`                               |
+| `!-1`       | Re-run last command                         | `!-1`                           | `!-1`                               |
+| `whoami`    | Show current user                           | `whoami`                        | `whoami`                            |
+| `who`       | List logged-in users                        | `who`                           | `who`                               |
+| `uptime`    | Show system uptime and load averages        | `uptime`                        | `uptime`                            |
+| `date`      | Display date and time                       | `date`                          | `date`                              |
+| `man`       | View manual page                            | `man <cmd>`                     | `man ls`                            |
+| `whatis`    | One-line description of a command           | `whatis <cmd>`                  | `whatis clear`                      |
+| `whereis`   | Locate binary, source, and man pages        | `whereis <cmd>`                 | `whereis uname`                     |
+| `which`     | Show full path of the executable            | `which <cmd>`                   | `which ls`                          |
+| `uname -s`  | Show kernel name                            | `uname -s`                      | `uname -s`                          |
+| `uname -r`  | Show kernel release version                 | `uname -r`                      | `uname -r`                          |
+| `uname -n`  | Show network node hostname                  | `uname -n`                      | `uname -n`                          |
+| `uname -m`  | Show machine hardware name/type             | `uname -m`                      | `uname -m`                          |
+| `uname -a`  | Show all system information                 | `uname -a`                      | `uname -a`                          |

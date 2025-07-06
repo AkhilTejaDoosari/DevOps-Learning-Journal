@@ -1,136 +1,186 @@
 # 🐧 Day 01 – Boot Process
 
 ## Table of Contents
-- [1. Power ON & Firmware Initialization](#1-power-on--firmware-initialization)
-- [2. Partition Tables – MBR vs GPT](#2-partition-tables--mbr-vs-gpt)
-- [3. Bootloader – GRUB/GRUB2](#3-bootloader--grubgrub2)
-- [4. Kernel – The Linux Brain Wakes Up](#4-kernel--the-linux-brain-wakes-up)
-- [5. systemd – The Linux Team Leader](#5-systemd--the-linux-team-leader)
-- [6. Run Targets](#6-run-targets)
-- [7. Startup Scripts and Login](#7-startup-scripts-and-login)
-- [8. Boot Process Commands](#8-boot-process-commands)
+- [1. Theory & Notes](#1-theory--notes)
+- [2. Real Examples](#2-real-examples)
+- [3. Practical Use Cases](#3-practical-use-cases)
+- [4. Quick Command Summary](#4-quick-command-summary)
 
 ---
 
-## 1. Power ON & Firmware Initialization
+<details>
+<summary><strong>1. Theory & Notes</strong></summary>
 
-When you press the power button, your system gets electricity — but before Linux starts, the firmware must check if the hardware is okay.
+### Linux Architecture Layers
 
-### What is BIOS/UEFI?
+Linux architecture is layered like a stack:
 
-- BIOS = Basic Input/Output System  
-- UEFI = Unified Extensible Firmware Interface (modern replacement for BIOS)
+1. **Hardware** – CPU, RAM, disk, NIC, etc.
+2. **Kernel** – The brain that talks to hardware.
+3. **Shell** – CLI interface between user and kernel.
+4. **Applications** – Browsers, servers, databases, tools.
 
-These are built-in programs on your motherboard.
-
-### What happens here?
-
-- Runs POST (Power-On Self-Test)  
-- Checks hardware like RAM, disk, keyboard, etc.  
-- Finds a bootable device (hard drive, USB, etc.)
-
-Tip: “BIOS/UEFI initializes hardware and identifies a bootable device.”
+Each layer builds on the one below. Example:
+- Click "Save" in an app → goes to shell → kernel handles → writes to hardware.
 
 ---
 
-## 2. Partition Tables – MBR vs GPT
+### Power ON & Firmware
 
-Before loading an OS, your disk must have a partition table to map where things are stored.
+- System gets power → firmware starts (BIOS or UEFI).
+- Runs **POST** to check hardware (RAM, CPU, storage).
+- Finds a bootable disk (e.g., SSD) to hand off to bootloader.
 
-- MBR = Master Boot Record (old, limited to 4 partitions and 2TB disks)  
-- GPT = GUID Partition Table (modern, used with UEFI, supports large disks and more partitions)
-
-MBR and GPT help locate the bootloader.
-
----
-
-## 3. Bootloader – GRUB/GRUB2
-
-### What is a bootloader?
-
-A small program that loads your operating system (Linux). In most Linux systems, it's GRUB or GRUB2.
-
-### What does GRUB do?
-
-- Shows OS selection menu (if dual-booting)  
-- Loads the Linux kernel  
-- Loads initramfs (temporary root file system)
-
-GRUB is like a train conductor — it gets the right Linux engine ready to go.
-
-### GRUB Config Files
-
-- `/boot/grub2/` or `/boot/efi/EFI/...`  
-- `/etc/default/grub`  
-- `/etc/grub.d/`
-
-Tip: “GRUB loads the Linux kernel and initial RAM disk into memory.”
+> BIOS = Basic Input/Output System  
+> UEFI = Unified Extensible Firmware Interface (modern firmware)
 
 ---
 
-## 4. Kernel – The Linux Brain Wakes Up
+### Disk Partitioning: MBR vs GPT
 
-### What is the kernel?
+- **MBR** = Master Boot Record
+  - Max 4 primary partitions
+  - Max 2 TB
+- **GPT** = GUID Partition Table
+  - Works with UEFI
+  - Supports huge disks + many partitions
 
-The core of Linux — it controls CPU, memory, devices, etc.
-
-### What happens here?
-
-- Loads drivers for your hardware  
-- Loads initramfs (mini root filesystem)  
-- Mounts the real root filesystem (e.g., `/dev/sda1`)
-
-The kernel is like the factory manager making sure everything runs.
-
-Tip: “initramfs provides essential drivers to help the kernel mount the actual root partition.”
+Both store where bootloader is.
 
 ---
 
-## 5. systemd – The Linux Team Leader
+### Bootloader – GRUB2
 
-### What is systemd?
+**What is it?**
+- Tiny program that loads the kernel and `initramfs`.
 
-The first real process started by the kernel. It’s PID 1.
+**Tasks:**
+- Show OS selection menu
+- Load Linux kernel into memory
+- Load initramfs (temporary root filesystem)
 
-### What does systemd do?
-
-- Starts services (network, sound, login, etc.)  
-- Decides boot mode (CLI or GUI)  
-- Manages the order and status of services
-
-Tip: “systemd is the first user-space process. It manages services and controls boot targets.”
-
----
-
-## 6. Run Targets
-
-Linux now uses systemd targets instead of traditional runlevels.
-
-| Runlevel | systemd Target      | Purpose                     |
-|----------|---------------------|-----------------------------|
-| 0        | poweroff.target     | Shutdown                    |
-| 1        | rescue.target       | Single-user mode            |
-| 3        | multi-user.target   | CLI, multi-user (no GUI)    |
-| 5        | graphical.target    | Multi-user with GUI         |
-| 6        | reboot.target       | Reboot                      |
+**Main Files:**
+- `/boot/grub2/`, `/boot/efi/EFI/`
+- `/etc/default/grub`, `/etc/grub.d/`
+- Final config → `/boot/grub2/grub.cfg` or `/boot/efi/EFI/.../grub.cfg`
 
 ---
 
-## 7. Startup Scripts and Login
+### Kernel – The Linux Brain
 
-Once systemd completes startup:
+**Job:**
+- Load drivers
+- Mount the real root filesystem (like `/dev/sda1`)
+- Start `init` (which becomes `systemd`)
 
-- You see a text login (for CLI systems)  
-- Or a graphical login window (for desktop systems)
-
-After login, Linux is ready to use.
+**initramfs**:
+- Temporary root with essential drivers
+- Needed before real `/` mount
 
 ---
 
-## 8. Boot Process Commands
+### systemd – First User-Space Process
+
+- PID = 1
+- Starts all services (daemons)
+- Manages logs, mounts, targets
+- Replaces old SysV `init`
+
+**Main unit types:**
+- `.service` → start/stop daemons
+- `.target` → boot states
+- `.socket`, `.mount`, `.timer`
+
+---
+
+### Runlevels vs Targets
+
+| Runlevel | systemd Target    | Purpose                  |
+|----------|-------------------|--------------------------|
+| 0        | poweroff.target   | Shutdown                 |
+| 1        | rescue.target     | Single-user mode         |
+| 3        | multi-user.target | CLI, no GUI              |
+| 5        | graphical.target  | Multi-user with GUI      |
+| 6        | reboot.target     | Restart the system       |
+
+---
+
+### Login Stage
+
+Once systemd finishes, you get:
+- CLI login (for servers)
+- GUI login screen (for desktops)
+
+Then you’re ready to use the system.
+
+</details>
+
+---
+
+<details>
+<summary><strong>2. Real Examples</strong></summary>
 
 ```bash
-uname -r                              # Show kernel version
-dmesg | less                          # View boot-time system messages
-systemctl list-units --type=service   # Show running services
-ls /boot                              # List kernel and GRUB files
+# Kernel version
+uname -r
+````
+
+```output
+6.5.0-25-generic
+```
+
+```bash
+# Boot-time logs
+dmesg | less
+```
+
+```bash
+# Running services
+systemctl list-units --type=service
+```
+
+```bash
+# View kernel + grub files
+ls /boot
+```
+
+```bash
+# GRUB default config
+cat /etc/default/grub
+```
+
+```bash
+# Regenerate GRUB (Debian/Ubuntu)
+sudo update-grub
+```
+
+</details>
+
+---
+
+<details>
+<summary><strong>3. Practical Use Cases</strong></summary>
+
+* Debug boot failures like kernel panics, GRUB issues, and disk mounting errors.
+* Manage dual boot setups between Linux and Windows.
+* Automate server provisioning with cloud-init and systemd targets.
+* Configure secure boot or kernel-level startup for compliance and recovery.
+
+</details>
+
+---
+
+<details>
+<summary><strong>4. Quick Command Summary</strong></summary>
+
+| Command                               | Description                           |                              |
+| ------------------------------------- | ------------------------------------- | ---------------------------- |
+| `uname -r`                            | Show current kernel version           |                              |
+| \`dmesg                               | less\`                                | View kernel/system boot logs |
+| `systemctl list-units --type=service` | List all active services              |                              |
+| `ls /boot`                            | Kernel + GRUB files                   |                              |
+| `cat /etc/default/grub`               | GRUB user config                      |                              |
+| `sudo update-grub`                    | Regenerate `grub.cfg` (Ubuntu/Debian) |                              |
+| `reboot` / `shutdown -h now`          | Restart or shut down the system       |                              |
+
+</details>
