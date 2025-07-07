@@ -66,7 +66,8 @@ Hello, World!
 
 * **Environment Variables (Predefined):** system-set variables available to all shells and subprocesses (analogy: office hallway bulletin board).  
   - Syntax: `export NAME="value"`  
-  - Example: `export FAVORITE_SNACK="cookies"`
+  - Example: `export FAVORITE_SNACK="cookies"`  
+  - **Permanent via `~/.bashrc`:** append `export NAME="value"` to your `~/.bashrc` so it loads in every new session.
 
 * **Access:** `$NAME` or `${NAME}`  
 * **Read Input:** `read VAR` stores user input  
@@ -82,6 +83,7 @@ Hello, World!
      * Uppercase for variables meant as environment/config (e.g., `PATH`, `FAVORITE_SNACK`).  
      * Lowercase for internal script vars (e.g., `count`, `file_path`).
 
+
 ### Example
 
 ```bash
@@ -94,18 +96,23 @@ echo "Deck-board: $FAVORITE_SNACK"
 # 2) Check before export:
 python3 -c 'import os; print(os.getenv("FAVORITE_SNACK"))'   # None
 
-# 3) Export to environment (hallway bulletin board):
+# 3) Export to environment (session-only):
 export FAVORITE_SNACK
 echo "Hallway board: $FAVORITE_SNACK"
 
-# 4) Check after export:
-python3 -c 'import os; print(os.getenv("FAVORITE_SNACK"))'   # cookies
+# 4) Make permanent via ~/.bashrc:
+echo 'export FAVORITE_SNACK="cookies"' >> ~/.bashrc
+source ~/.bashrc
+
+# 5) In a new shell session, verify permanence:
+bash -c 'python3 -c "import os; print(os.getenv(\"FAVORITE_SNACK\"))"'
 ````
 
 ```output
 Deck-board: cookies
 None
 Hallway board: cookies
+cookies
 cookies
 ```
 
@@ -135,16 +142,34 @@ cookies
   * Multiplication: `((a * b))`
   * Division: `((a / b))`
   * Modulo: `((a % b))`
+
 * **Comparison Operators** (inside `[[ ]]`)
+  * Numeric:  
+    * `-eq` (equal)  
+    * `-ne` (not equal)  
+    * `-lt` (less than)  
+    * `-gt` (greater than)  
+    * `-le` (less than or equal)  
+    * `-ge` (greater than or equal)
+  * String:  
+    * `=` (equal)  
+    * `!=` (not equal)  
+    * `-z` (zero-length)  
+    * `-n` (non-zero length)
 
-  * Numeric: `-eq`, `-ne`, `-lt`, `-gt`, `-le`, `-ge`
-  * String: `=`, `!=`, `-z` (empty), `-n` (non-empty)
-* **Logical Operators:** `&&` (and), `||` (or), `!` (not)
-* **Redirection & Pipes:**
+* **Logical Operators:**  
+  * `&&` (AND)  
+  * `||` (OR)  
+  * `!`  (NOT)
 
-  * Output: `> file`, `>> file`
-  * Input: `< file`
-  * Pipe: `cmd1 | cmd2`
+* **Redirection & Pipes:**  
+  * Output:  
+    * `>`  (overwrite to file)  
+    * `>>` (append to file)  
+  * Input:  
+    * `<`  (read from file)  
+  * Pipe:  
+    * `cmd1 | cmd2`  (send output of `cmd1` to input of `cmd2`)
 
 ### Example
 
@@ -162,6 +187,36 @@ Enter two numbers:
 4 5
 Sum     = 9
 Product = 20
+```
+```bash
+#!/bin/bash
+
+# Numeric comparison
+a=5
+b=3
+if [[ $a -gt $b ]]; then
+  echo "$a is greater than $b"
+fi
+
+# String comparison
+str1="hello"
+str2="world"
+if [[ $str1 != $str2 ]]; then
+  echo "$str1 is not equal to $str2"
+fi
+
+# Logical operators
+count=1
+name=""
+if [[ $count -eq 1 && -z "$name" ]]; then
+  echo "Count is one AND name is empty"
+fi
+
+# Redirection & pipes
+echo "Line 1" > output.txt
+echo "Line 2" >> output.txt
+grep "Line" < output.txt
+echo "apple.txt" | grep ".txt"
 ```
 
 ---
