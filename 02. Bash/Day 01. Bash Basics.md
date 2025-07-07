@@ -60,37 +60,64 @@ Hello, World!
 
 ### Theory & Notes
 
-* **Definition:** Named placeholders for values.
-* **Assignment:** `NAME="value"` (no spaces around `=`).
-* **Access:** `$NAME` or `${NAME}` retrieves the value.
-* **Read Input:** `read VAR` prompts the user and stores input.
-* **Export:** `export VAR="value"` makes it available to child processes.
-* **Unset:** `unset VAR` deletes the variable.
-* **Naming Rules:** Must start with a letter or underscore; case-sensitive; no special chars.
+* **User-Defined Variables:** custom variables you set in your session (analogy: sticky note on your desk).  
+  - Syntax: `NAME="value"`  
+  - Example: `FAVORITE_SNACK="cookies"`
+
+* **Environment Variables (Predefined):** system-set variables available to all shells and subprocesses (analogy: office hallway bulletin board).  
+  - Syntax: `export NAME="value"`  
+  - Example: `export FAVORITE_SNACK="cookies"`
+
+* **Access:** `$NAME` or `${NAME}`  
+* **Read Input:** `read VAR` stores user input  
+* **Unset:** `unset VAR` deletes the variable  
+* **Naming Rules:** start with letter/underscore, case-sensitive, no special chars  * **Naming Rules:**  
+  1. **Start Character:** must begin with a letter (`A–Z`, `a–z`) or underscore (`_`).  
+     * Valid: `VAR1`, `_temp`, `myVar`  
+     * Invalid: `1VAR`, `-name`, `@home`  
+  2. **Allowed Characters:** letters, digits (`0–9`), and underscores only.  
+  3. **No Spaces or Symbols:** cannot include spaces, hyphens, punctuation, or special chars.  
+  4. **Case-Sensitive:** `MyVar` ≠ `myvar`.  
+  5. **Convention:**  
+     * Uppercase for variables meant as environment/config (e.g., `PATH`, `FAVORITE_SNACK`).  
+     * Lowercase for internal script vars (e.g., `count`, `file_path`).
 
 ### Example
 
 ```bash
 #!/bin/bash
-# variable-demo.sh
-read -p "Enter your name: " USER_NAME
-echo "Hello, $USER_NAME!"
-```
+
+# 1) User-defined (deck-board):
+FAVORITE_SNACK="cookies"
+echo "Deck-board: $FAVORITE_SNACK"
+
+# 2) Check before export:
+python3 -c 'import os; print(os.getenv("FAVORITE_SNACK"))'   # None
+
+# 3) Export to environment (hallway bulletin board):
+export FAVORITE_SNACK
+echo "Hallway board: $FAVORITE_SNACK"
+
+# 4) Check after export:
+python3 -c 'import os; print(os.getenv("FAVORITE_SNACK"))'   # cookies
+````
 
 ```output
-Enter your name: Alice
-Hello, Alice!
+Deck-board: cookies
+None
+Hallway board: cookies
+cookies
 ```
 
 ---
 
-| Command              | Purpose                      | Example                         |
-| -------------------- | ---------------------------- | ------------------------------- |
-| `NAME="value"`       | Assign a value to a variable | `GREETING="Hi"`                 |
-| `echo "$NAME"`       | Display variable value       | `echo "$GREETING"`              |
-| `read VAR`           | Prompt and store user input  | `read CITY`                     |
-| `export VAR="value"` | Share with subprocesses      | `export PATH="$HOME/bin:$PATH"` |
-| `unset VAR`          | Remove the variable          | `unset TEMP_DIR`                |
+| Command                           | Purpose                               | Example                                                      |
+| --------------------------------- | ------------------------------------- | ------------------------------------------------------------ |
+| `NAME="value"`                    | Create user-defined variable          | `FAVORITE_SNACK="cookies"`                                   |
+| `echo "$NAME"`                    | Display variable value                | `echo "$FAVORITE_SNACK"`                                     |
+| `export NAME`                     | Convert to environment variable       | `export FAVORITE_SNACK`                                      |
+| `python3 -c '…os.getenv("NAME")'` | Check environment variable via Python | `python3 -c 'import os; print(os.getenv("FAVORITE_SNACK"))'` |
+| `unset NAME`                      | Remove variable                       | `unset FAVORITE_SNACK`                                       |
 
 </details>
 
