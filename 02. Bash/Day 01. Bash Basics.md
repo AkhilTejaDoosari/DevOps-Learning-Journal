@@ -4,10 +4,10 @@
 
 ## Table of Contents
 
-- [1. Syntax & Script Basics](#1-syntax--script-basics)  
-- [2. Variables](#2-variables)  
-- [3. Operators](#3-operators)  
-- [4. Quick Command Summary](#4-quick-command-summary)  
+- [1. Syntax & Script Basics](#1-syntax--script-basics)
+- [2. Variables](#2-variables)
+- [3. Bash Data Types](#3-bash-data-types)
+- [4. Quick Command Summary](#4-quick-command-summary)
 
 ---
 
@@ -16,7 +16,7 @@
 
 ### Theory & Notes
 
-- **Shebang (`#! /bin/bash`)**  
+- **Shebang (`#!/bin/bash`)**  
   Tells the OS to use Bash to interpret this script.
 - **Comments (`#`)**  
   Lines beginning with `#` are ignored by Bash; use them to document your code.
@@ -26,7 +26,7 @@
   Separate multiple commands on the same line.
 - **Script Workflow**  
   1. **Create** with `vi script.sh`  
-  2. **Add shebang** as first line: `#! /bin/bash`  
+  2. **Add shebang** as first line: `#!/bin/bash`  
   3. **Make executable:** `chmod +x script.sh`  
   4. **Run:** `./script.sh`
 
@@ -42,11 +42,9 @@ echo "Hello, World!"
 Hello, World!
 ```
 
----
-
 | Command            | Purpose                  | Example              |
 | ------------------ | ------------------------ | -------------------- |
-| `#! /bin/bash`     | Specify Bash interpreter | N/A                  |
+| `#!/bin/bash`      | Specify Bash interpreter | N/A                  |
 | `# comment`        | Ignore line              | `# backup script`    |
 | `chmod +x file.sh` | Make script executable   | `chmod +x backup.sh` |
 | `./script.sh`      | Run the script           | `./backup.sh`        |
@@ -131,104 +129,70 @@ cookies
 ---
 
 <details>
-<summary><strong>3. Operators</strong></summary>
+<summary><strong>3. Bash Data Types</strong></summary>
 
-### Theory & Notes
+### Understanding Bash Data Types
 
-* **Arithmetic Operators** (inside `$((…))`)
+#### Strings
 
-  * Addition: `((a + b))`
-  * Subtraction: `((a - b))`
-  * Multiplication: `((a * b))`
-  * Division: `((a / b))`
-  * Modulo: `((a % b))`
+Strings store text and support concatenation and substring extraction.
 
-* **Comparison Operators** (inside `[[ ]]`)
-  * Numeric:  
-    * `-eq` (equal)  
-    * `-ne` (not equal)  
-    * `-lt` (less than)  
-    * `-gt` (greater than)  
-    * `-le` (less than or equal)  
-    * `-ge` (greater than or equal)
-  * String:  
-    * `=` (equal)  
-    * `!=` (not equal)  
-    * `-z` (zero-length)  
-    * `-n` (non-zero length)
-
-* **Logical Operators:**  
-  * `&&` (AND)  
-  * `||` (OR)  
-  * `!`  (NOT)
-
-* **Redirection & Pipes:**  
-  * Output:  
-    * `>`  (overwrite to file)  
-    * `>>` (append to file)  
-  * Input:  
-    * `<`  (read from file)  
-  * Pipe:  
-    * `cmd1 | cmd2`  (send output of `cmd1` to input of `cmd2`)
-
-### Example
+**Example:**
 
 ```bash
-#!/bin/bash
-# operator-demo.sh
-echo "Enter two numbers:"
-read X Y
-echo "Sum     = $((X + Y))"
-echo "Product = $((X * Y))"
+greeting="Hello"
+name="Akhil"
+full="$greeting, $name!"
+echo "$full"
 ```
 
-```output
-Enter two numbers:
-4 5
-Sum     = 9
-Product = 20
-```
+#### Numbers
+
+Bash supports integer arithmetic with `$((...))`.
+
+**Example:**
+
 ```bash
-#!/bin/bash
-
-# Numeric comparison
-a=5
-b=3
-if [[ $a -gt $b ]]; then
-  echo "$a is greater than $b"
-fi
-
-# String comparison
-str1="hello"
-str2="world"
-if [[ $str1 != $str2 ]]; then
-  echo "$str1 is not equal to $str2"
-fi
-
-# Logical operators
-count=1
-name=""
-if [[ $count -eq 1 && -z "$name" ]]; then
-  echo "Count is one AND name is empty"
-fi
-
-# Redirection & pipes
-echo "Line 1" > output.txt
-echo "Line 2" >> output.txt
-grep "Line" < output.txt
-echo "apple.txt" | grep ".txt"
+# Number example
+num1=5
+num2=10
+sum=$((num1 + num2))
+Difference=$((num2 - num1))
+Product=$((num1 * num2))
+Division=$((num2 / num1))
+Modulas=$((num1 % num2))
+echo "Sum: $sum, Difference: $Difference, Product: $Product, Division: $Division, Modulas: $Modulas"
 ```
 
----
+#### Arrays
 
-| Category         | Syntax             | Purpose                |                            |                              |
-| ---------------- | ------------------ | ---------------------- | -------------------------- | ---------------------------- |
-| Arithmetic       | `$((num1 + num2))` | Calculate expressions  |                            |                              |
-| Comparison (num) | `[[ $a -eq $b ]]`  | Compare numeric values |                            |                              |
-| Comparison (str) | `[[ -z "$str" ]]`  | Test string emptiness  |                            |                              |
-| Logical          | `&&`, \`           |                        | `, `!\`                    | Combine or invert conditions |
-| Redirection      | `>`, `>>`, `<`     | Redirect I/O           |                            |                              |
-| Pipe             | \`cmd1             | cmd2\`                 | Chain command output/input |                              |
+Indexed arrays store multiple values.
+
+**Example:**
+
+```bash
+fruits=("apple" "banana" "cherry")
+for f in "${fruits[@]}"; do
+  echo "$f"
+done
+```
+
+#### Associative Arrays
+
+Key-value pairs (declare with `-A`).
+
+**Example:**
+
+```bash
+#!bin/bash
+declare -A colors
+colors[apple]="red"
+colors[banana]="yellow"
+echo ${colors[apple]} # red
+echo ${colors[banana]} # yellow
+```
+
+**Note:** Bash lacks native floating-point. Use `bc` or `awk` for decimals.
 
 </details>
 
@@ -237,18 +201,15 @@ echo "apple.txt" | grep ".txt"
 <details>
 <summary><strong>4. Quick Command Summary</strong></summary>
 
-## Quick Command Summary
-
 | Command              | Purpose                        |                       |
 | -------------------- | ------------------------------ | --------------------- |
-| `vi script.sh`       | Create or edit a script file   |                       |
+| `vi script.sh`       | Create/edit script             |                       |
 | `chmod +x script.sh` | Make script executable         |                       |
-| `./script.sh`        | Execute the script             |                       |
+| `./script.sh`        | Execute script                 |                       |
 | `NAME="value"`       | Assign variable                |                       |
-| `export VAR="value"` | Export variable to environment |                       |
-| `unset VAR`          | Unset variable                 |                       |
-| `$((a + b))`         | Perform arithmetic             |                       |
-| `[[ ... ]]`          | Test expressions               |                       |
-| \`                   | `, `>`, `>>`, `<\`             | Pipe and redirect I/O |
+| `export VAR`         | Export variable to environment |                       |
+| `unset VAR`          | Remove variable                |                       |
+| `$((a + b))`         | Integer arithmetic             |                       |
+| `\|`                 | `, `>`, `>>`, `<\`             | Pipe and redirect I/O |
 
 </details>
