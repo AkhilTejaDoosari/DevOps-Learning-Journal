@@ -6,7 +6,8 @@
 
 - [1. Bash Operators](#1-bash-operators)
 - [2. Bash If...Else Statements](#2-bash-ifelse-statements)
-- [3. Quick Command Summary](#3-quick-command-summary)
+- [3. Loops](#1-loops)
+- [4. Quick Command Summary](#3-quick-command-summary)
 
 ---
 
@@ -109,6 +110,7 @@ File exists.
 
 ---
 
+
 <details>
 <summary><strong>2. Bash If...Else Statements</strong></summary>
 
@@ -177,18 +179,157 @@ Number is between 1 and 9
 ---
 
 <details>
-<summary><strong>3. Quick Command Summary</strong></summary>
+<summary><strong>3. Loops</strong></summary>
+
+### Theory & Notes
+
+Loops let you repeat the same block of code multiple times—handy for batch tasks or polling:
+
+* **For Loop**  
+  Use when you know the items or range up front.  
+  ```bash
+  for i in {1..5}; do
+    echo "Iteration $i"
+  done
+  #output
+  Iteration 1
+  Iteration 2
+  Iteration 3
+  Iteration 4
+  Iteration 5
+  ```
+
+  This runs the body five times, setting `i` from 1 to 5.
+
+* **While Loop**   
+  Best for “run until condition changes.”
+
+  ```bash
+  count=1
+  while [ "$count" -le 5 ]; do
+    echo "Count is $count"
+    ((count++))
+  done
+  #output
+  Count is 1
+  Count is 2
+  Count is 3
+  Count is 4
+  Count is 5
+  ```
+
+  Checks the condition each time before entering the loop.
+
+* **Until Loop**   
+  Like `while` but inverted: “run until this becomes true.”
+
+  ```bash
+  count=1
+  until [ "$count" -gt 5 ]; do
+    echo "Count is $count"
+    ((count++))
+  done
+  #output
+  Count is 1
+  Count is 2
+  Count is 3
+  Count is 4
+  Count is 5
+  ```
+
+  Stops once the test succeeds.
+
+**Controlling Flow & Nested Loops**
+
+* **`break`**  
+  Stops the **current** loop immediately and continues after its `done`.  
+  ```bash
+  for i in {1..5}; do
+    if [ "$i" -eq 3 ]; then
+      echo "Stopping at 3"
+      break
+    fi
+    echo "i = $i"
+  done
+   #Output:
+   i = 1
+   i = 2
+   Stopping at 3
+   ```
+
+* **`continue`**   
+  Skips the rest of the **current** iteration and jumps to the next one.
+
+  ```bash
+  #!/bin/bash
+  for i in {1..5}; do
+    if [ "$i" -eq 3 ]; then
+    echo "Skipping 3"
+    continue
+    fi
+    echo "Number $i"
+  done
+   #Output:
+   Number 1
+   Number 2
+   Skipping 3
+   Number 4
+   Number 5
+   ```
+
+* **What happens:**
+
+   1. `i` goes from 1 to 5.
+   2. When `i` is 3, `continue` skips the `echo "Number $i"` and jumps to the next iteration.
+
+* **Nested Loops**
+  One loop inside another.
+
+  ```bash
+  for outer in A B; do
+    echo "Outer: $outer"
+    for inner in 1 2; do
+      [ "$inner" = 2 ] && continue    # skips just inner loop’s iteration
+      echo "  Inner: $inner"
+    done
+  done
+  # Output:
+  # Outer: A
+  #   Inner: 1
+  # Outer: B
+  #   Inner: 1
+  ```
+
+  * Use `break 2` to exit **both** loops at once:
+
+    ```bash
+    break 2
+    ```
+</details>
+
+---
+
+<details>
+<summary><strong>4. Quick Command Summary</strong></summary>
 
 ### Quick Command Summary
 
-| Command                | Purpose                       |
-| ---------------------- | ----------------------------- |
-| `if [ ]`               | Start conditional statement   |
-| `then`, `else`, `elif` | Conditional keywords          |
-| `fi`                   | End conditional statement     |
-| `-gt`, `-lt`, `-eq`    | Numeric comparison operators  |
-| `=`, `!=`              | String comparison operators   |
-| `&&`, `!` , `\|\|`,     | Logical operators             |
-| `-e`, `-f`, `-d`       | File test operators           |
+| Command                                        | Purpose                                 |
+| ---------------------------------------------- | --------------------------------------- |
+| `-eq`, `-ne`, `-gt`, `-ge`, `-lt`, `-le`       | Numeric comparison operators            |
+| `=`, `!=`, `<`, `>`                            | String comparison operators             |
+| `&&`, `||`, `!`                                | Logical operators                       |
+| `$(( expression ))`                            | Arithmetic evaluation                   |
+| `-e`, `-f`, `-d`, `-s`                         | File test operators                     |
+| `if [ condition ]`                             | Start conditional statement             |
+| `then`                                         | Begin “true” branch                     |
+| `else`                                         | Begin “false” branch                    |
+| `elif [ condition ]`                           | Additional condition in `if...else`     |
+| `fi`                                           | End conditional statement               |
+| `for …; do …; done`                            | For loop                                |
+| `while [ condition ]; do …; done`              | While loop                              |
+| `until [ condition ]; do …; done`              | Until loop                              |
+| `break`                                        | Exit current loop                       |
+| `continue`                                     | Skip to next iteration in loop          |
 
 </details>
