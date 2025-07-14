@@ -1,4 +1,4 @@
-# 🐧 Day 02 – Bash Operators & Conditionals
+# 🐧 Day 02 – Bash Operators, Conditionals & Loops
 
 ---
 
