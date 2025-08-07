@@ -7,6 +7,5 @@
 # Other unnecessary files
 *.log
 
-Tracked_vs_Not_Tracked.png 
-workflow.png
-commit.png
+#ignor all png files
+*.png
