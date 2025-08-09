@@ -7,5 +7,4 @@
 # Other unnecessary files
 *.log
 
-#ignor all png files
-*.png
+images
