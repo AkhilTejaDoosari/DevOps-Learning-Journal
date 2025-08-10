@@ -57,9 +57,6 @@
 
 ---
 
-
-
-
 <details>
 <summary><strong>2. Listing Directory Contents</strong></summary>
 
@@ -95,9 +92,6 @@
 </details>
 
 ---
-
-
-
 
 <details>
 <summary><strong>3. Terminal Essentials</strong></summary>
