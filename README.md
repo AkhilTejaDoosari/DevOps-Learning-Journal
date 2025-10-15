@@ -112,31 +112,31 @@ Learn AWS from the inside out — not by memorization, but by **how services act
 
 #### **Phase 1 – Security & Network**
 
-1️⃣ IAM → Users, Roles, Policies *(who can access what)*
-2️⃣ VPC + Subnets → Network layout, CIDR, Security Groups *(where things live)*
+1️⃣ IAM → Users, Roles, Policies *(who can access what)*   
+2️⃣ VPC + Subnets → Network layout, CIDR, Security Groups *(where things live)*   
 
 #### **Phase 2 – Storage Foundations**
 
-3️⃣ EBS + Snapshots + EFS → Block & shared storage for EC2
-4️⃣ S3 → Object storage, versioning, hosting
+3️⃣ EBS + Snapshots + EFS → Block & shared storage for EC2   
+4️⃣ S3 → Object storage, versioning, hosting   
 
 #### **Phase 3 – Compute + Database**
 
-5️⃣ EC2 → Virtual machines that use IAM, VPC & EBS
-6️⃣ RDS → Managed database connected to EC2 inside VPC
+5️⃣ EC2 → Virtual machines that use IAM, VPC & EBS   
+6️⃣ RDS → Managed database connected to EC2 inside VPC   
 
 #### **Phase 4 – Resilience & Scaling**
 
-7️⃣ Load Balancer + Auto Scaling → Distribute traffic & handle load automatically
+7️⃣ Load Balancer + Auto Scaling → Distribute traffic & handle load automatically   
 
 #### **Phase 5 – Automation & Monitoring**
 
-8️⃣ CloudWatch + Lambda + Beanstalk → Monitoring + serverless automation
-9️⃣ Route 53 + CloudFormation → DNS + Infrastructure as Code
+8️⃣ CloudWatch + Lambda + Beanstalk → Monitoring + serverless automation   
+9️⃣ Route 53 + CloudFormation → DNS + Infrastructure as Code   
 
-➡️ **Flow:** IAM → VPC → EBS → S3 → EC2 → RDS → Load Balancer → Auto Scaling → CloudWatch → Lambda → Route 53 → CloudFormation
+➡️ **Flow:** IAM → VPC → EBS → S3 → EC2 → RDS → Load Balancer → Auto Scaling → CloudWatch → Lambda → Route 53 → CloudFormation   
 
-> *Goal:* Understand AWS as a living architecture, not a checklist of services.
+> *Goal:* Understand AWS as a living architecture, not a checklist of services.   
 
 ---
 
@@ -146,11 +146,11 @@ Docker and Kubernetes — build, ship, and run applications anywhere.
 
 **Includes:**
 
-* **Docker:** Images, containers, volumes, networking, Dockerfiles
-* **Kubernetes (K8s):** Pods, Deployments, Services, ReplicaSets, Ingress, ConfigMaps
-* **Helm basics:** Simplify deployment management
+* **Docker:** Images, containers, volumes, networking, Dockerfiles   
+* **Kubernetes (K8s):** Pods, Deployments, Services, ReplicaSets, Ingress, ConfigMaps   
+* **Helm basics:** Simplify deployment management   
 
-> *Goal:* Learn containerization and orchestration to scale modern apps.
+> *Goal:* Learn containerization and orchestration to scale modern apps.   
 
 ---
 
@@ -160,7 +160,7 @@ Define and deploy infrastructure through code using Terraform and Ansible.
 
 **Includes:**
 
-* **Terraform:** Providers, state files, variables, and modules
+* **Terraform:** Providers, state files, variables, and modules   
 * **Ansible:** Playbooks, inventory, roles, YAML syntax
 * **AWS Integration:** Deploy EC2, S3, and networking with IaC
 * **CI/CD pipelines:** Automate IaC validation and deployment
@@ -210,16 +210,14 @@ Monitor, log, and alert for proactive infrastructure management.
 
 ## 🤝 Join the Journey
 
-If you’re also on the DevOps path:
+If you’re learning DevOps too:  
+- ⭐ **Star** this repo to support the project  
+- 🍴 **Fork** it to start your own journey  
+- 💬 Share insights or corrections  
 
-* ⭐ Star this repo to support the project
-* 🍴 Fork and document your own progress
-* 💬 Share ideas and improvements
+📧 **Email:** [doosariakhilteja@gmail.com](mailto:doosariakhilteja@gmail.com)  
+🔗 **LinkedIn:** [linkedin.com/in/akhiltejadoosari](https://linkedin.com/in/akhiltejadoosari)  
+💻 **GitHub:** [github.com/AkhilTejaDoosari](https://github.com/AkhilTejaDoosari)  
 
-📧 **Email:** [doosariakhilteja@gmail.com](mailto:doosariakhilteja@gmail.com)
-🌐 **Portfolio:** [akhiltejadoosari.xyz](https://akhiltejadoosari.xyz/)
-
-> *“Certifications prove what you studied.
-> This roadmap proves what you understand.”*
-
----git
+> _“Certifications prove what you studied.  
+> This roadmap proves what you understand.”_  
