@@ -216,7 +216,7 @@ If you’re learning DevOps too:
 - 💬 Share insights or corrections  
 
 📧 **Email:** [doosariakhilteja@gmail.com](mailto:doosariakhilteja@gmail.com)  
-🔗 **LinkedIn:** [linkedin.com/in/akhiltejadoosari](https://linkedin.com/in/akhiltejadoosari)  
+🔗 **LinkedIn:** [linkedin.com/in/akhiltejadoosari2001](https://www.linkedin.com/in/akhiltejadoosari2001/)  
 💻 **GitHub:** [github.com/AkhilTejaDoosari](https://github.com/AkhilTejaDoosari)  
 
 > _“Certifications prove what you studied.  
